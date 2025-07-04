@@ -1,0 +1,36 @@
+{
+  "name": "theme",
+  "version": "1.1.2",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate:version": "node scripts/generateVersion.js",
+    "dev": "vite",
+    "build": "npm run generate:version && vite build",
+    "bump:patch": "npm version patch && npm run build",
+    "bump:minor": "npm version minor && npm run build",
+    "bump:major": "npm version major && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "sass": "1.77.6",
+    "tailwindcss": "^4.1.11",
+    "vite": "^7.0.2",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-package-version": "^1.1.0"
+  },
+  "dependencies": {
+    "@fancyapps/ui": "^5.0.36",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "gsap": "^3.12.5",
+    "jquery": "^3.7.1",
+    "swiper": "^11.1.12"
+  }
+}

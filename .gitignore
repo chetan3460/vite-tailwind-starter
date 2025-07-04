@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+dist/
+public/version.json
+
+# builds and logs
+*.log
+.vite
+.cache
+.DS_Store
+
+# system files
+Thumbs.db

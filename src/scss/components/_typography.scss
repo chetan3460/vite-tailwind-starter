@@ -1,0 +1,188 @@
+/* ==========================================================================
+  Base Typography Styles
+  ========================================================================== */
+
+/* ==========================================================================
+   Base Type
+   ========================================================================== */
+* {
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:focus,
+  &:active,
+  &:hover {
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    outline: 0;
+  }
+}
+
+html {
+  @include font-rem($htmlFontSize);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  //@include font-rem($htmlFontSize);
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  color: $baseTextColor;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  letter-spacing: 0.2px;
+
+  p {
+    margin-bottom: 20px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    @include font-rem(14px, 22px);
+    font-family: $baseFontFamily;
+
+    @include bp(mobile) {
+      @include font-rem(15px, 25px);
+      letter-spacing: 0;
+    }
+  }
+}
+
+body,
+input,
+select,
+textarea {
+  font-family: $baseFontFamily;
+}
+
+/* ==========================================================================
+   Headings and paragraph
+   ========================================================================== */
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-style: normal;
+  font-family: $headingFontFamily;
+  margin-bottom: 0px;
+  // @extend %baseSpacing;
+  color: color(primary, pink) !important;
+}
+
+h1,
+.h1 {
+  @include font-rem(54px, 60px);
+
+  letter-spacing: -0.5px;
+  font-weight: 700;
+  color: color(primary, base);
+
+  @include bp(tablet-sm) {
+    @include font-rem(38px, 50px);
+  }
+}
+
+h2,
+.h2 {
+  @include font-rem(36px, 46px);
+  font-weight: 700;
+  color: color(primary, base);
+
+  @include bp(mobile) {
+    @include font-rem(31px, 45px);
+  }
+}
+
+h3,
+.h3 {
+  @include font-rem(16px, 17px);
+  font-weight: 700;
+  color: color(primary, blue);
+  letter-spacing: 0;
+  // @include bp(mobile) {
+  //   @include font-rem(16px, 31px);
+  // }
+}
+
+h4,
+.h4 {
+  @include font-rem(20px, 36px);
+  font-weight: 700;
+}
+
+h5,
+.h5 {
+  @include font-rem(16px, 20.8px);
+  font-weight: 600;
+
+  @include bp(mobile) {
+    @include font-rem(18px, 21.6px);
+  }
+}
+
+h6,
+.h6 {
+  @include font-rem(16px, 20.8px);
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+li {
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+a {
+  color: inherit;
+  transition: 0.3s;
+  text-decoration: none !important;
+
+  &:hover {
+    color: inherit;
+    text-decoration: inherit;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+// section {
+//   padding: 100px 0;
+
+//   @include bp(tablet-sm) {
+//     padding: 80px 0;
+//   }
+// }
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}

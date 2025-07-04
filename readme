@@ -1,0 +1,5 @@
+| 🔧 Action        | Command              | Result            |
+| ---------------- | -------------------- | ----------------- |
+| 🩹 Patch fix     | `npm run bump:patch` | `1.1.1` → `1.1.2` |
+| 🧱 Minor update  | `npm run bump:minor` | `1.1.2` → `1.2.0` |
+| 💥 Major release | `npm run bump:major` | `1.2.0` → `2.0.0` |

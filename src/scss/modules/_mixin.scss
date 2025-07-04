@@ -1,0 +1,189 @@
+// ==========================================================================
+//  GLOBAL Mixins
+// ==========================================================================
+
+// * Convert font-size from px to rem
+// *
+// * @param $size - the value in pixel you want to convert
+// *
+// * e.g. p {@include fontSize(12px);}
+// *
+
+@use 'sass:math';
+
+@mixin font-rem($font-size, $line-height: 0) {
+  & {
+    font-size: math.div($font-size, $baseFontSize) * 1rem;
+  }
+
+  @if ($line-height > 0) {
+    & {
+      line-height: math.div($line-height, $baseFontSize) * 1rem;
+    }
+  }
+}
+
+// * SASS color map function
+// *
+// * using the function to get an non-map color
+// *
+// * e.g. body {background-color: color(background)};
+// *
+// * using the function to get a nested map color
+// *
+// * h1{color: color(primary, base);}
+// *
+
+// retrieve color from $colors map ie. `color(base, primary)`
+
+@function color($color-name, $color-variant: null) {
+  // color variant is optional
+  @if ($color-variant !=null) {
+    // map inception
+    @return map-get(map-get($colors, $color-name), $color-variant);
+  } @else {
+    @return map-get($colors, $color-name);
+  }
+}
+
+// Media query mixin
+@mixin bp($query) {
+  @if $query==desktop-lg {
+    @media (min-width: 1600px) {
+      @content;
+    }
+  } @else if $query==desktop-lg-max {
+    @media (max-width: 1599px) {
+      @content;
+    }
+  } @else if $query==desktop-lg-m {
+    @media (max-width: 1440px) {
+      @content;
+    }
+  } @else if $query==desktop-md {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else if $query==desktop-sm {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  } @else if $query==tablet-md {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $query==foundation-tablet-sm {
+    @media (max-width: 1023px) {
+      @content;
+    }
+  } @else if $query==tablet-sm {
+    @media (max-width: 991px) {
+      @content;
+    }
+  } @else if $query==tablet-strict {
+    @media (min-width: 768px) and (max-width: 991px) {
+      @content;
+    }
+  } @else if $query==tablet {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $query==mobile {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $query==sm {
+    @media (max-width: 568px) {
+      @content;
+    }
+  } @else if $query==xs {
+    @media (max-width: 375px) {
+      @content;
+    }
+  }
+}
+
+// Input placeholder mixin
+
+@mixin input-placeholder {
+  &.placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+// input,
+// textarea {
+//     @include input-placeholder {
+//         color: $grey;
+//     }
+// }
+
+// IE Mixins
+
+@mixin ie-11 {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @content;
+  }
+}
+
+@mixin ie-edge {
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}
+
+@mixin moz {
+  @-moz-document url-prefix() {
+    @content;
+  }
+}
+
+// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+//
+//    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    576px
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min !=0, $min, null);
+}
+
+// Returns a blank string if smallest breakpoint, otherwise returns the name with a dash infront.
+// Useful for making responsive utilities.
+//
+//    >> breakpoint-infix(xs, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    ""  (Returns a blank string)
+//    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+//    "-sm"
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) ==null, "", "-#{$name}");
+}
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
