@@ -14,11 +14,11 @@ export default defineConfig({
                 main: path.resolve(__dirname, 'index.html'),
             },
             output: {
-                entryFileNames: `js/[name]-v${pkg.version}-[hash].js`,
+                entryFileNames: `js/[name]-v${pkg.version}.js`,
                 assetFileNames: ({ name }) => {
-                    if (/\.css$/.test(name ?? '')) return `css/[name]-v${pkg.version}-[hash][extname]`;
-                    if (/\.(woff2?|ttf|otf|eot)$/.test(name ?? '')) return `fonts/[name]-v${pkg.version}-[hash][extname]`;
-                    return `assets/[name]-v${pkg.version}-[hash][extname]`;
+                    if (/\.css$/.test(name ?? '')) return `css/[name]-v${pkg.version}[extname]`;
+                    if (/\.(woff2?|ttf|otf|eot)$/.test(name ?? '')) return `fonts/[name]-v${pkg.version}[extname]`;
+                    return `assets/[name]-v${pkg.version}[extname]`;
                 },
             },
         },

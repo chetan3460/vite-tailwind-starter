@@ -38,7 +38,7 @@ section.banner-area {
         h1 {
           @include font-rem(25px, 28px);
           font-weight: 700;
-
+          color: #fff !important;
           span {
             display: block;
             @include font-rem(100px, 75px);
