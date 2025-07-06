@@ -1,7 +1,7 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-export default class upgradeSlider {
+export default class TestBlock {
   constructor() {
     this.setDomMap();
     this.bindEvents();
@@ -10,7 +10,7 @@ export default class upgradeSlider {
   setDomMap() {}
 
   bindEvents() {
-    const mySwiper = new Swiper('.swiper-upgrade', {
+    const mySwiper = new Swiper('.swiper-upgrade1', {
       direction: 'horizontal',
       loop: true,
       centeredSlides: true,

@@ -1,10 +1,6 @@
-import Swiper from "swiper";
-import {
-  Navigation,
-  Pagination,
-  Autoplay
-} from "swiper/modules";
-import { min1024 } from "../utils";
+import Swiper from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { min1024 } from '../utils';
 
 export default class BannerSlider {
   constructor() {
@@ -12,12 +8,10 @@ export default class BannerSlider {
     this.bindEvents();
   }
 
-  setDomMap() {
-
-  }
+  setDomMap() {}
 
   bindEvents() {
-    var mySwiper = new Swiper('.swiper-container', {
+    const mySwiper = new Swiper('.swiper-container', {
       direction: 'horizontal',
       loop: true,
       centeredSlides: true,
@@ -43,6 +37,4 @@ export default class BannerSlider {
       // },
     });
   }
-
-
 }

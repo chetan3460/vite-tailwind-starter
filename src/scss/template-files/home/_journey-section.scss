@@ -1,51 +1,49 @@
 .journey {
-    &--section {
-        padding: 50px 0 50px;
-        overflow: hidden;
-        position: relative;
-        z-index: 1;
+  &--section {
+    padding: 50px 0 50px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
 
-        @include bp(tablet-sm) {
-            background-image: unset;
-        }
+    @include bp(tablet-sm) {
+      background-image: unset;
+    }
+  }
+
+  &--title {
+    h2 {
+      margin-bottom: 0;
     }
 
-    &--title {
-        h2 {
-            margin-bottom: 0;
-        }
-
-        p {
-            max-width: 900px;
-
-        }
+    p {
+      max-width: 900px;
     }
+  }
 
-    &--item-block {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: 1fr;
-        grid-column-gap: 30px;
-        grid-row-gap: 30px;
-        max-width: 500px;
+  &--item-block {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    max-width: 500px;
 
-        @include bp(tablet-sm) {
-            grid-template-columns: repeat(1, 1fr);
-
-        }
+    @include bp(tablet-sm) {
+      grid-template-columns: repeat(1, 1fr);
     }
+  }
 
-    &--bg-img {
-        position: absolute;
-        right: 0;
-        top: -24%;
-        width: 700px;
-        z-index: -1;
+  &--bg-img {
+    position: absolute;
+    right: 0;
+    top: -24%;
+    width: 700px;
+    z-index: -1;
 
-        @include bp(tablet-sm) {
-            position: relative;
-            width: 100%;
-            margin-top: -50px;
-        }
+    @include bp(tablet-sm) {
+      position: relative;
+      width: 100%;
+      margin-top: -50px;
     }
+  }
 }

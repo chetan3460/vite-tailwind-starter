@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+*.min.js
+*.min.css
+
+# Package files
+package-lock.json
+*.tgz
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Images and fonts
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.woff
+*.woff2
+*.ttf
+*.otf
+*.eot
+
+# Generated files
+version.json
+
+# HTML files with syntax errors
+*.html

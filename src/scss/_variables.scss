@@ -5,15 +5,14 @@
 // Color variable map
 $colors: (
   // non-nested values
-    background: #ffffff,
+  background: #ffffff,
   border: #c5c5c5,
   failure: rgba(199, 28, 28, 0.73),
   success: #00ac57,
   warning: #ea9f12,
   white: #ffffff,
   // nested map inception
-    primary:
-    (
+  primary: (
       pink: #c12a5a,
       red: #dc3644,
       blue: #242d52,
@@ -48,8 +47,8 @@ $grid-breakpoints: (
 //   ==========================================================================
 $htmlFontSize: 16px;
 $baseFontSize: 16px;
-$baseFontFamily: "Opensans", sans-serif;
-$headingFontFamily: "Bwmodelicalti", sans-serif;
+$baseFontFamily: 'Opensans', sans-serif;
+$headingFontFamily: 'Bwmodelicalti', sans-serif;
 
 // $baseFontFamily: $avenirLight;
 // $baseHeadingFont: $avenirMedium;

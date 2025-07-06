@@ -6,7 +6,6 @@ console.log('Vite is working!');
 import '../scss/app.scss';
 import Header from './components/Header';
 import DynamicImports from './components/DynamicImports';
-import { inVP } from './utils';
 
 export default new (class App {
   constructor() {
@@ -60,15 +59,6 @@ export default new (class App {
       this.htmlNbody.animate({ scrollTop: 0 });
     });
     console.log('App Version:', __APP_VERSION__);
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const el = document.getElementById('version');
-      if (el) {
-        el.textContent = `v${__APP_VERSION__}`;
-      }
-    });
-
-
   };
 
   windowResize = () => {
