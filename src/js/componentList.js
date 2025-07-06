@@ -1,26 +1,28 @@
+// src/componentList.js
 import $ from 'jquery';
-
-const bannerSlider = $('.banner-area');
-const upgradeSlider = $('.upgrade--section');
-const TestBlock = $('.test-block');
-// Set 'mobile' to false to prevent JS from loading on mobile. Change the media query as desired in DynamicImports.js
 
 export const componentList = [
   {
-    element: bannerSlider,
-    // File Name
+    element: $('header'),
+    className: 'Header',
+    mobile: true,
+    config: {
+      header: $('header'),
+      htmlBody: $('body'),
+    },
+  },
+  {
+    element: $('.banner-area'),
     className: 'BannerSlider',
     mobile: true,
   },
   {
-    element: upgradeSlider,
-    // File Name
+    element: $('.upgrade--section'),
     className: 'UpgradeSlider',
     mobile: true,
   },
   {
-    element: TestBlock,
-    // File Name
+    element: $('.test-block'),
     className: 'TestBlock',
     mobile: true,
   },

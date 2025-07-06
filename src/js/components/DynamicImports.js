@@ -1,5 +1,8 @@
-import { importComponent, max1200 } from '../utils';
+// src/components/DynamicImports.js
 import { componentList } from '../componentList';
+import { max1200 } from '../utils';
+
+const components = import.meta.glob('./*.js');
 
 export default class DynamicImports {
   constructor() {
@@ -17,19 +20,23 @@ export default class DynamicImports {
   };
 
   components = () => {
-    if (!componentList) {
-      return;
-    }
+    if (!componentList) return;
 
-    $.each(componentList, (_, { element: el, className, mobile }) => {
-      if (!el.length) {
-        return;
-      }
-      if (!mobile && max1200.matches) {
-        return;
-      }
+    componentList.forEach(
+      async ({ element: el, className, mobile, config }) => {
+        if (!el.length || el.hasClass('init')) return;
+        if (!mobile && max1200.matches) return;
 
-      importComponent(el, className);
-    });
+        const path = `./${className}.js`;
+
+        if (components[path]) {
+          const module = await components[path]();
+          new module.default(config);
+          el.addClass('init');
+        } else {
+          console.warn(`[DynamicImport] Component "${className}" not found`);
+        }
+      }
+    );
   };
 }

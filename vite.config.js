@@ -39,17 +39,17 @@ export default defineConfig({
       input: getHtmlInputs(),
       output: {
         entryFileNames: () => {
-          // Force all entries to use the same naming pattern  
+          // Force all entries to use the same naming pattern
           return 'js/app-v' + pkg.version + '.js';
         },
-        chunkFileNames: (chunkInfo) => {
+        chunkFileNames: chunkInfo => {
           // For dynamic imports and chunks
           return 'js/[name]-v' + pkg.version + '.js';
         },
-        assetFileNames: (assetInfo) => {
+        assetFileNames: assetInfo => {
           const name = assetInfo.name ?? 'asset';
           const extType = name.split('.').at(1);
-          
+
           if (/\.css$/.test(name)) {
             return 'css/app-v' + pkg.version + '.css';
           }
