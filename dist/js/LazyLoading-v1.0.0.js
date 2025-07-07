@@ -1,0 +1,1 @@
+class a{constructor(){this.setDomMap(),this.bindEvents()}setDomMap=()=>{this.blurredImageDiv=document.querySelectorAll(".blurred-img")};bindEvents=()=>{this.blurredImageDiv.forEach(t=>{const e=t.querySelector("img.lazy");e.complete?this.loaded(e):e.addEventListener("load",()=>{this.loaded(e)})})};loaded=t=>{t.parentElement.classList.add("loaded")}}export{a as default};

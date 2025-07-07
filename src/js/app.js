@@ -16,6 +16,7 @@ export default new (class App {
 
   domReady = () => {
     this.windowResize();
+    this.windowScroll();
     this.bindEvents();
     new DynamicImports();
     injectVersion();
@@ -34,9 +35,17 @@ export default new (class App {
   };
 
   bindEvents = () => {
-    this.window.resize(this.windowResize);
+    // Window Events
+    this.window.resize(this.windowResize).scroll(this.windowScroll);
+
+    // General Events
+    const $container = this.wrapper;
+    $container.on('click', '.disabled', () => false);
+    // Specific Events
     this.gotoTop.on('click', () => {
-      this.htmlNbody.animate({ scrollTop: 0 });
+      this.htmlNbody.animate({
+        scrollTop: 0,
+      });
     });
   };
 
@@ -49,5 +58,29 @@ export default new (class App {
       this.wrapper.css('margin-bottom', -this.footerHeight);
       this.pushDiv.height(this.footerHeight);
     }
+  };
+
+  windowScroll = () => {
+    const topOffset = this.window.scrollTop();
+
+    this.header.toggleClass('top', topOffset > 10);
+    this.header.toggleClass('sticky-header', topOffset > 80);
+    if (topOffset > this.previousScroll || topOffset < 500) {
+      this.header.removeClass('sticky-header');
+    } else if (topOffset < this.previousScroll) {
+      this.header.addClass('sticky-header');
+      // Additional checking so the header will not flicker
+      if (topOffset > 250) {
+        this.header.addClass('sticky-header');
+      } else {
+        this.header.removeClass('sticky-header');
+      }
+    }
+
+    this.previousScroll = topOffset;
+    this.gotoTop.toggleClass(
+      'active',
+      this.window.scrollTop() > this.screenHeight / 2
+    );
   };
 })();
