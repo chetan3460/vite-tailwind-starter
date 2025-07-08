@@ -5,6 +5,7 @@ import '../scss/app.scss';
 import DynamicImports from './components/DynamicImports';
 
 console.log('Vite is working!');
+console.log('App JS loaded');
 
 export default new (class App {
   constructor() {

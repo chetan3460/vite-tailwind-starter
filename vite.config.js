@@ -4,7 +4,8 @@ import pkg from './package.json';
 
 import viteCompression from 'vite-plugin-compression';
 import { glob } from 'glob';
-
+import fs from 'fs';
+import legacy from '@vitejs/plugin-legacy';
 // Replace __APP_VERSION__ in HTML
 const htmlVersionPlugin = () => {
   const version = pkg.version;
@@ -16,36 +17,63 @@ const htmlVersionPlugin = () => {
   };
 };
 
-const htmlScriptInjectPlugin = () => {
+const htmlScriptAndStyleInjectPlugin = () => {
   return {
-    name: 'html-script-inject',
+    name: 'html-script-style-inject',
     transformIndexHtml(html, ctx) {
       const isBuild = ctx?.server === undefined;
+      const version = pkg.version;
 
-      const scriptTag = isBuild
-        ? `<script src="js/app-v${pkg.version}.js"></script>`
+      const scriptTags = isBuild
+        ? `
+  <!-- Modern browsers -->
+  <script type="module" src="js/app-v${version}.js"></script>
+  
+  <!-- Legacy fallback for GoDaddy/IE11 -->
+  <script nomodule src="js/app-legacy-v${version}.js"></script>
+        `
         : `<script type="module" src="/src/js/app.js"></script>`;
 
-      return html.replace('<!-- inject:js -->', scriptTag);
+      const styleTag = isBuild
+        ? `<link rel="stylesheet" href="css/app-v${version}.css" />`
+        : '';
+
+      return html
+        .replace('<!-- __STYLE_TAG__ -->', styleTag)
+        .replace('<!-- __SCRIPT_TAG__ -->', scriptTags);
     },
   };
 };
 
-// Get all HTML files as inputs
+// Get all HTML files and inject app.js as entry
 function getHtmlInputs() {
   const htmlFiles = glob.sync('./*.html');
   const inputs = {};
+
   htmlFiles.forEach(file => {
     const name = path.basename(file, '.html');
     inputs[name] = path.resolve(__dirname, file);
   });
+
+  // 👇 Force Vite to include app.js as an entry point
+  inputs.app = path.resolve(__dirname, 'src/js/app.js');
+
   return inputs;
 }
 
 export default defineConfig({
   root: '.',
   base: './',
-  plugins: [htmlVersionPlugin(), viteCompression(), htmlScriptInjectPlugin()],
+  plugins: [
+    htmlVersionPlugin(),
+    viteCompression(),
+    htmlScriptAndStyleInjectPlugin(),
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+      renderLegacyChunks: true,
+      modernPolyfills: true,
+    }),
+  ],
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
   },
@@ -55,7 +83,11 @@ export default defineConfig({
     rollupOptions: {
       input: getHtmlInputs(),
       output: {
-        entryFileNames: `js/app-v${pkg.version}.js`,
+        entryFileNames: chunkInfo => {
+          return chunkInfo.name === 'app'
+            ? `js/app-v${pkg.version}.js`
+            : `js/[name]-v${pkg.version}.js`;
+        },
         chunkFileNames: `js/[name]-v${pkg.version}.js`,
         assetFileNames: assetInfo => {
           const name = assetInfo.name ?? '';
@@ -66,11 +98,10 @@ export default defineConfig({
             return 'images/[name][extname]';
           return 'assets/[name][extname]';
         },
-        manualChunks(id) {
-          if (id.includes('node_modules')) return 'vendor';
-        },
       },
     },
+    modulePreload: false, // 👈 prevents <link rel="modulepreload">
+    target: 'es2015',
   },
   resolve: {
     alias: {
