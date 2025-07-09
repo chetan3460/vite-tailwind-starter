@@ -21,6 +21,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.1.11",
     "@vitejs/plugin-legacy": "^7.0.0",
     "autoprefixer": "^10.4.21",
     "glob": "^11.0.3",
@@ -34,6 +36,7 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
+    "@iconscout/unicons": "^4.2.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "gsap": "^3.12.5",

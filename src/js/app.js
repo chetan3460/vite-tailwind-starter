@@ -1,7 +1,9 @@
 // src/js/app.js
 import './helpers/jquery';
 import { injectVersion } from './utils';
-import '../scss/app.scss';
+// import '../scss/app.scss';
+import '@iconscout/unicons/css/line.css'; // or solid.css, thinline.css
+import '../css/app.css';
 import DynamicImports from './components/DynamicImports';
 
 console.log('Vite is working!');
@@ -17,9 +19,10 @@ export default new (class App {
 
   domReady = () => {
     this.windowResize();
-    this.windowScroll();
+    // this.windowScroll();
     this.bindEvents();
     new DynamicImports();
+    this.stickyMenu();
     injectVersion();
   };
 
@@ -36,18 +39,39 @@ export default new (class App {
   };
 
   bindEvents = () => {
-    // Window Events
-    this.window.resize(this.windowResize).scroll(this.windowScroll);
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    document.documentElement.classList.toggle(
+      'dark',
+      localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+    );
+    // Whenever the user explicitly chooses light mode
+    localStorage.theme = 'light';
+    // Whenever the user explicitly chooses dark mode
+    localStorage.theme = 'dark';
+    // Whenever the user explicitly chooses to respect the OS preference
+    localStorage.removeItem('theme');
 
-    // General Events
-    const $container = this.wrapper;
-    $container.on('click', '.disabled', () => false);
-    // Specific Events
-    this.gotoTop.on('click', () => {
-      this.htmlNbody.animate({
-        scrollTop: 0,
-      });
-    });
+    try {
+      function changeTheme(e) {
+        e.preventDefault();
+        const htmlTag = document.getElementsByTagName('html')[0];
+
+        if (htmlTag.className.includes('dark')) {
+          htmlTag.className = 'light';
+        } else {
+          htmlTag.className = 'dark';
+        }
+      }
+
+      const switcher = document.getElementById('theme-mode');
+      switcher?.addEventListener('click', changeTheme);
+
+      const chk = document.getElementById('chk');
+
+      chk.addEventListener('change', changeTheme);
+    } catch (err) {}
   };
 
   windowResize = () => {
@@ -61,27 +85,27 @@ export default new (class App {
     }
   };
 
-  windowScroll = () => {
-    const topOffset = this.window.scrollTop();
+  //Sticky Menu
+  stickyMenu = () => {
+    let ticking = false;
 
-    this.header.toggleClass('top', topOffset > 10);
-    this.header.toggleClass('sticky-header', topOffset > 80);
-    if (topOffset > this.previousScroll || topOffset < 500) {
-      this.header.removeClass('sticky-header');
-    } else if (topOffset < this.previousScroll) {
-      this.header.addClass('sticky-header');
-      // Additional checking so the header will not flicker
-      if (topOffset > 250) {
-        this.header.addClass('sticky-header');
-      } else {
-        this.header.removeClass('sticky-header');
+    function windowScroll() {
+      const navbar = document.getElementById('topnav');
+      if (navbar) {
+        navbar.classList.toggle('nav-sticky', window.scrollY >= 50);
       }
     }
 
-    this.previousScroll = topOffset;
-    this.gotoTop.toggleClass(
-      'active',
-      this.window.scrollTop() > this.screenHeight / 2
-    );
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          windowScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll);
   };
 })();
