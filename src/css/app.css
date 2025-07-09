@@ -1,28 +1,25 @@
-/* Import Tailwind v4 Theme Configuration */
-/* @import 'theme.css'; */
-
 /* // FONTS */
-@import 'custom/_fonts.css';
+@import './custom/_fonts.css';
 
 /* // general */
-@import 'custom/_general.css';
+@import './custom/_general.css';
 
 /* // structure */
-@import 'custom/structure/_topnav.css';
-@import 'custom/structure/_footer.css';
+@import './custom/structure/_topnav.css';
+@import './custom/structure/_footer.css';
 
 /* // pages */
-@import 'custom/pages/_helper.css';
-@import 'custom/pages/_hero.css';
-@import 'custom/pages/_countdown.css';
-@import 'custom/pages/_portfolio.css';
-@import 'custom/pages/_contact.css';
+@import './custom/pages/_helper.css';
+@import './custom/pages/_hero.css';
+@import './custom/pages/_countdown.css';
+@import './custom/pages/_portfolio.css';
+@import './custom/pages/_contact.css';
 
 /* // Plugins */
-@import 'custom/plugins/_swiper-slider.css';
-@import 'custom/plugins/_testi.css';
-@import 'custom/plugins/_choices.css';
-@import 'custom/plugins/_datepicker.css';
+@import './custom/plugins/_swiper-slider.css';
+@import './custom/plugins/_testi.css';
+@import './custom/plugins/_choices.css';
+@import './custom/plugins/_datepicker.css';
 
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
@@ -161,9 +158,9 @@ body {
   border-color: var(--color-black);
 }
 
-.text-white {
+/* .text-white {
   color: var(--color-white);
-}
+} */
 
 /* .bg-white {
   background-color: var(--color-white);

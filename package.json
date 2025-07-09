@@ -7,7 +7,8 @@
   "scripts": {
     "generate:version": "node scripts/generateVersion.js",
     "dev": "vite",
-    "build": "npm run generate:version && vite build",
+    "clean": "rm -rf dist .vite",
+    "build": "npm run clean && npm run generate:version && vite build",
     "bump:patch": "npm version patch && npm run build",
     "bump:minor": "npm version minor && npm run build",
     "bump:major": "npm version major && npm run build",
@@ -38,6 +39,7 @@
     "@fancyapps/ui": "^5.0.36",
     "@iconscout/unicons": "^4.2.0",
     "@popperjs/core": "^2.11.8",
+    "@tailwindcss/vite": "^4.1.11",
     "bootstrap": "^5.3.3",
     "gsap": "^3.12.5",
     "jquery": "^3.7.1",

@@ -1,4 +1,6 @@
 import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
+
 import path from 'path';
 import pkg from './package.json';
 
@@ -27,15 +29,15 @@ const htmlScriptAndStyleInjectPlugin = () => {
       const scriptTags = isBuild
         ? `
   <!-- Modern browsers -->
-  <script type="module" src="js/app-v${version}.js"></script>
+  <script type="module" src="js/app-min-v${version}.js"></script>
   
   <!-- Legacy fallback for GoDaddy/IE11 -->
-  <script nomodule src="js/app-legacy-v${version}.js"></script>
+  <script nomodule src="js/app-legacy-min-v${version}.js"></script>
         `
         : `<script type="module" src="/src/js/app.js"></script>`;
 
       const styleTag = isBuild
-        ? `<link rel="stylesheet" href="css/app-v${version}.css" />`
+        ? `<link rel="stylesheet" href="css/app-min-v${version}.css" />`
         : '';
 
       return html
@@ -65,6 +67,7 @@ export default defineConfig({
   root: '.',
   base: './',
   plugins: [
+    tailwindcss(),
     htmlVersionPlugin(),
     viteCompression(),
     htmlScriptAndStyleInjectPlugin(),
@@ -80,18 +83,20 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    minify: 'esbuild', // switch to 'terser' if needed
+
     rollupOptions: {
       input: getHtmlInputs(),
       output: {
         entryFileNames: chunkInfo => {
           return chunkInfo.name === 'app'
-            ? `js/app-v${pkg.version}.js`
-            : `js/[name]-v${pkg.version}.js`;
+            ? `js/app-min-v${pkg.version}.js`
+            : `js/[name]-min-v${pkg.version}.js`;
         },
-        chunkFileNames: `js/[name]-v${pkg.version}.js`,
+        chunkFileNames: `js/[name]-min-v${pkg.version}.js`,
         assetFileNames: assetInfo => {
           const name = assetInfo.name ?? '';
-          if (/\.css$/.test(name)) return `css/app-v${pkg.version}.css`;
+          if (/\.css$/.test(name)) return `css/app-min-v${pkg.version}.css`;
           if (/\.(woff2?|ttf|otf|eot)$/.test(name))
             return 'fonts/[name][extname]';
           if (/\.(png|jpe?g|gif|svg|webp|avif)$/.test(name))

@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@custom-variant dark (&:where(.dark, .dark *));
 
 /* Tailwind v4 Theme Configuration */
 @theme {
@@ -15,7 +14,6 @@
   --color-dark: #3c4858;
   --color-black: #161c2d;
   --color-dark-footer: #192132;
-  --color-white: #ffffff;
 
   /* Custom Font Families */
   --font-family-nunito: 'Nunito', sans-serif;
@@ -49,9 +47,6 @@
   --shadow-2xl: 0 25px 50px -12px rgb(60 72 88 / 0.25);
   --shadow-inner: inset 0 2px 4px 0 rgb(60 72 88 / 0.05);
   --shadow-testi: 2px 2px 2px -1px rgb(60 72 88 / 0.15);
-}
-body {
-  @apply text-black;
 }
 
 /* Container Configuration */
@@ -135,18 +130,6 @@ body {
   border-color: var(--color-black);
 }
 
-.text-white {
-  color: var(--color-white);
-}
-
-/* .bg-white {
-  background-color: var(--color-white);
-} */
-
-.border-white {
-  border-color: var(--color-white);
-}
-
 .text-dark-footer {
   color: var(--color-dark-footer);
 }
@@ -223,10 +206,6 @@ body {
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-  .dark\:text-white {
-    color: var(--color-white);
-  }
-
   .dark\:text-dark {
     color: var(--color-dark);
   }
@@ -253,10 +232,6 @@ body {
 }
 
 /* Class-based Dark Mode */
-.dark .dark\:text-white {
-  color: var(--color-white) !important;
-}
-
 .dark .dark\:text-dark {
   color: var(--color-dark);
 }

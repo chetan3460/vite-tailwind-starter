@@ -5,18 +5,17 @@ export default class Header {
   constructor({ header, htmlBody }) {
     this.header = header;
     this.htmlBody = htmlBody;
-    this.menuTrigger = this.header.find('.menuToggle');
-    this.mainMenu = this.htmlBody.find('.main-menu');
-    this.menuMask = this.htmlBody.find('.menu-mask');
-    this.menuOverlay = this.htmlBody.find('.menu-overlay');
-    this.megaMenuLinks = this.mainMenu.find('a');
-    this.searchBox = $('.searchbox');
+
     this.bindEvents();
   }
 
   bindEvents = () => {
-    const $container = this.htmlBody;
+    const toggleBtn = document.getElementById('isToggle');
+    const nav = document.getElementById('navigation');
 
-    // $container.on("click", ".menu", this.handleMenu);
+    toggleBtn?.addEventListener('click', () => {
+      toggleBtn.classList.toggle('open');
+      nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+    });
   };
 }
