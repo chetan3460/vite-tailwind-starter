@@ -1,15 +1,15 @@
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
-
 import path from 'path';
 import pkg from './package.json';
-
 import viteCompression from 'vite-plugin-compression';
 // import { glob } from 'glob';
 import { globSync } from 'glob'; // or 'glob' if you're using old version
-
-import fs from 'fs';
 import legacy from '@vitejs/plugin-legacy';
+import fs from 'fs';
+
+import { fileURLToPath } from 'url';
+
 // Replace __APP_VERSION__ in HTML
 const htmlVersionPlugin = () => {
   const version = pkg.version;
@@ -21,6 +21,35 @@ const htmlVersionPlugin = () => {
   };
 };
 
+// const htmlScriptAndStyleInjectPlugin = () => {
+//   return {
+//     name: 'html-script-style-inject',
+//     transformIndexHtml(html, ctx) {
+//       const isBuild = ctx?.server === undefined;
+//       const version = pkg.version;
+
+//       const scriptTags = isBuild
+//         ? `
+//   <!-- Modern browsers -->
+//   <script type="module" src="js/app-min-v${version}.js"></script>
+
+//   <!-- Legacy fallback for GoDaddy/IE11 -->
+//   <script nomodule src="js/app-legacy-min-v${version}.js"></script>
+//         `
+//         : `<script type="module" src="/src/js/app.js"></script>`;
+
+//       const styleTag = isBuild
+//         ? `<link rel="stylesheet" href="css/app-min-v${version}.css" />`
+//         : '';
+
+//       return html
+//         .replace('<!-- __STYLE_TAG__ -->', styleTag)
+//         .replace('<!-- __SCRIPT_TAG__ -->', scriptTags);
+//     },
+//   };
+// };
+
+// ✅ Inject style/script dynamically with correct relative paths
 const htmlScriptAndStyleInjectPlugin = () => {
   return {
     name: 'html-script-style-inject',
@@ -28,18 +57,26 @@ const htmlScriptAndStyleInjectPlugin = () => {
       const isBuild = ctx?.server === undefined;
       const version = pkg.version;
 
+      // Only during build, calculate relative path
+      let relativePath = '.';
+      if (isBuild && ctx.filename) {
+        const htmlDir = path.posix.dirname(ctx.filename.replace(/\\/g, '/'));
+        relativePath = path.posix.relative(htmlDir, '.');
+        if (!relativePath) relativePath = '.'; // fallback
+      }
+
       const scriptTags = isBuild
         ? `
   <!-- Modern browsers -->
-  <script type="module" src="js/app-min-v${version}.js"></script>
+  <script type="module" src="${relativePath}/js/app-min-v${version}.js"></script>
   
-  <!-- Legacy fallback for GoDaddy/IE11 -->
-  <script nomodule src="js/app-legacy-min-v${version}.js"></script>
+  <!-- Legacy fallback -->
+  <script nomodule src="${relativePath}/js/app-legacy-min-v${version}.js"></script>
         `
         : `<script type="module" src="/src/js/app.js"></script>`;
 
       const styleTag = isBuild
-        ? `<link rel="stylesheet" href="css/app-min-v${version}.css" />`
+        ? `<link rel="stylesheet" href="${relativePath}/css/app-min-v${version}.css" />`
         : '';
 
       return html
