@@ -38,6 +38,8 @@
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
     "@iconscout/unicons": "^4.2.0",
+    "@mdi/font": "^7.4.47",
+    "@mdi/js": "^7.4.47",
     "@popperjs/core": "^2.11.8",
     "@tailwindcss/vite": "^4.1.11",
     "bootstrap": "^5.3.3",

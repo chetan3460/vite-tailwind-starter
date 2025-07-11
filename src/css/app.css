@@ -42,10 +42,6 @@
 
   /* Custom Font Families */
   --font-family-nunito: 'Nunito', sans-serif;
-  --font-family-cursive-alex: 'Alex Brush', cursive;
-  --font-family-cursive-kaushan: 'Kaushan Script', cursive;
-  --font-family-head-ebgaramond: 'EB Garamond', serif;
-  --font-family-para-worksans: 'Work Sans', sans-serif;
 
   /* Custom Spacing */
   --spacing-0_75: 0.1875rem;
@@ -78,60 +74,14 @@ body {
 }
 
 /* Container Configuration */
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-@media (min-width: 640px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    padding-left: 45px;
-    padding-right: 45px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    padding-left: 13rem;
-    padding-right: 13rem;
-  }
+@utility container {
+  padding-inline: 15px;
+  margin-inline: auto;
 }
 
 /* Custom Utility Classes */
 .font-nunito {
   font-family: var(--font-family-nunito);
-}
-
-.font-cursive-alex {
-  font-family: var(--font-family-cursive-alex);
-}
-
-.font-cursive-kaushan {
-  font-family: var(--font-family-cursive-kaushan);
-}
-
-.font-head-ebgaramond {
-  font-family: var(--font-family-head-ebgaramond);
-}
-
-.font-para-worksans {
-  font-family: var(--font-family-para-worksans);
 }
 
 .text-dark {

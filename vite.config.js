@@ -5,7 +5,9 @@ import path from 'path';
 import pkg from './package.json';
 
 import viteCompression from 'vite-plugin-compression';
-import { glob } from 'glob';
+// import { glob } from 'glob';
+import { globSync } from 'glob'; // or 'glob' if you're using old version
+
 import fs from 'fs';
 import legacy from '@vitejs/plugin-legacy';
 // Replace __APP_VERSION__ in HTML
@@ -49,15 +51,20 @@ const htmlScriptAndStyleInjectPlugin = () => {
 
 // Get all HTML files and inject app.js as entry
 function getHtmlInputs() {
-  const htmlFiles = glob.sync('./*.html');
+  const htmlFiles = globSync('./**/*.html', {
+    ignore: ['node_modules/**', '.*', 'dist/**'],
+  });
+
   const inputs = {};
 
   htmlFiles.forEach(file => {
-    const name = path.basename(file, '.html');
+    const name = path
+      .relative(__dirname, file)
+      .replace(/\//g, '_')
+      .replace('.html', '');
     inputs[name] = path.resolve(__dirname, file);
   });
 
-  // 👇 Force Vite to include app.js as an entry point
   inputs.app = path.resolve(__dirname, 'src/js/app.js');
 
   return inputs;

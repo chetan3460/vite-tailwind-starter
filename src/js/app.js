@@ -1,7 +1,7 @@
 // src/js/app.js
 import './helpers/jquery';
 import { injectVersion } from './utils';
-// import '../scss/app.scss';
+
 import '@iconscout/unicons/css/line.css'; // or solid.css, thinline.css
 import '../css/app.css';
 import DynamicImports from './components/DynamicImports';
@@ -22,7 +22,6 @@ export default new (class App {
     // this.windowScroll();
     this.bindEvents();
     new DynamicImports();
-    this.stickyMenu();
     injectVersion();
   };
 
@@ -77,15 +76,6 @@ export default new (class App {
     /*********************/
     /* Toggle Menu */
     /*********************/
-    // function toggleMenu() {
-    //   document.getElementById('isToggle').classList.toggle('open');
-    //   var isOpen = document.getElementById('navigation');
-    //   if (isOpen.style.display === 'block') {
-    //     isOpen.style.display = 'none';
-    //   } else {
-    //     isOpen.style.display = 'block';
-    //   }
-    // }
 
     /*********************/
     /*    Menu Active    */
@@ -116,59 +106,60 @@ export default new (class App {
       return null;
     }
 
-    function activateMenu() {
-      var menuItems = document.getElementsByClassName('sub-menu-item');
-      if (menuItems) {
-        var matchingMenuItem = null;
-        for (var idx = 0; idx < menuItems.length; idx++) {
-          if (menuItems[idx].href === window.location.href) {
-            matchingMenuItem = menuItems[idx];
-          }
-        }
+    // function activateMenu() {
+    //   var menuItems = document.getElementsByClassName('sub-menu-item');
+    //   if (menuItems) {
+    //     var matchingMenuItem = null;
+    //     for (var idx = 0; idx < menuItems.length; idx++) {
+    //       if (menuItems[idx].href === window.location.href) {
+    //         matchingMenuItem = menuItems[idx];
+    //       }
+    //     }
 
-        if (matchingMenuItem) {
-          matchingMenuItem.classList.add('active');
+    //     if (matchingMenuItem) {
+    //       matchingMenuItem.classList.add('active');
 
-          var immediateParent = getClosest(matchingMenuItem, 'li');
+    //       var immediateParent = getClosest(matchingMenuItem, 'li');
 
-          if (immediateParent) {
-            immediateParent.classList.add('active');
-          }
+    //       if (immediateParent) {
+    //         immediateParent.classList.add('active');
+    //       }
 
-          var parent = getClosest(immediateParent, '.child-menu-item');
-          if (parent) {
-            parent.classList.add('active');
-          }
+    //       var parent = getClosest(immediateParent, '.child-menu-item');
+    //       if (parent) {
+    //         parent.classList.add('active');
+    //       }
 
-          var parent = getClosest(
-            parent || immediateParent,
-            '.parent-menu-item'
-          );
+    //       var parent = getClosest(
+    //         parent || immediateParent,
+    //         '.parent-menu-item'
+    //       );
 
-          if (parent) {
-            parent.classList.add('active');
+    //       if (parent) {
+    //         parent.classList.add('active');
 
-            var parentMenuitem = parent.querySelector('.menu-item');
-            if (parentMenuitem) {
-              parentMenuitem.classList.add('active');
-            }
+    //         var parentMenuitem = parent.querySelector('.menu-item');
+    //         if (parentMenuitem) {
+    //           parentMenuitem.classList.add('active');
+    //         }
 
-            var parentOfParent = getClosest(parent, '.parent-parent-menu-item');
-            if (parentOfParent) {
-              parentOfParent.classList.add('active');
-            }
-          } else {
-            var parentOfParent = getClosest(
-              matchingMenuItem,
-              '.parent-parent-menu-item'
-            );
-            if (parentOfParent) {
-              parentOfParent.classList.add('active');
-            }
-          }
-        }
-      }
-    }
+    //         var parentOfParent = getClosest(parent, '.parent-parent-menu-item');
+    //         if (parentOfParent) {
+    //           parentOfParent.classList.add('active');
+    //         }
+    //       } else {
+    //         var parentOfParent = getClosest(
+    //           matchingMenuItem,
+    //           '.parent-parent-menu-item'
+    //         );
+    //         if (parentOfParent) {
+    //           parentOfParent.classList.add('active');
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+
     /*********************/
     /*  Clickable manu   */
     /*********************/
@@ -196,29 +187,5 @@ export default new (class App {
       this.wrapper.css('margin-bottom', -this.footerHeight);
       this.pushDiv.height(this.footerHeight);
     }
-  };
-
-  //Sticky Menu
-  stickyMenu = () => {
-    let ticking = false;
-
-    function windowScroll() {
-      const navbar = document.getElementById('topnav');
-      if (navbar) {
-        navbar.classList.toggle('nav-sticky', window.scrollY >= 50);
-      }
-    }
-
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          windowScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll);
   };
 })();
