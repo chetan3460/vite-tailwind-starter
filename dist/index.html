@@ -21,9 +21,6 @@
         <!-- Style -->
 
         <link rel="stylesheet" href="./css/app-min-v1.0.2.css" />
-
-
-
       <script async type="module" crossorigin src="./js/index-min-v1.0.2.js"></script>
       <script type="module">import.meta.url;import("_").catch(()=>1);(async function*(){})().next();window.__vite_is_modern_browser=true</script>
       <script type="module">!function(){if(window.__vite_is_modern_browser)return;console.warn("vite: loading legacy chunks, syntax error above and the same error below should be ignored");var e=document.getElementById("vite-legacy-polyfill"),n=document.createElement("script");n.src=e.src,n.onload=function(){System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))},document.body.appendChild(n)}();</script>
@@ -35,87 +32,87 @@
         <span
             class="fixed blur-[200px] lg:size-[600px] size-[400px] rounded-full bottom-[10%] md:end-[10%] -end-[20%] bg-red-600/20"></span>
 
+        <!-- Inject header -->
         <header id="header" class=" fixed-top d-flex align-items-center bg-black">
-            <!-- Start Navbar -->
-            <nav id="topnav" class="defaultscroll is-sticky">
-                <div class="container relative">
-                    <!-- Logo container-->
-                    <a class="logo" href="./index.html">
-                        <img src="images/logo-dark.png" class="inline-block dark:hidden" alt="">
-                        <img src="images/logo-light.png" class="hidden dark:inline-block" alt="">
-                    </a>
+    <!-- Start Navbar -->
+    <nav id="topnav" class="defaultscroll is-sticky">
+        <div class="container relative">
+            <!-- Logo container-->
+            <a class="logo" href="./index.html">
+                <img src="./images/logo-dark.png" class="inline-block dark:hidden" alt="">
+                <img src="./images/logo-light.png" class="hidden dark:inline-block" alt="">
+            </a>
 
-                    <!-- End Logo container-->
-                    <div class="menu-extras">
-                        <div class="menu-item">
-                            <!-- Mobile menu toggle-->
-                            <a class="navbar-toggle" id="isToggle">
-                                <div class="lines">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </a>
-                            <!-- End mobile menu toggle-->
+            <!-- End Logo container-->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle" id="isToggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
-                    </div>
+                    </a>
+                    <!-- End mobile menu toggle-->
+                </div>
+            </div>
 
 
 
-                    <div id="navigation">
-                        <!-- Navigation Menu-->
-                        <ul class="navigation-menu">
-                            <li><a href="./index.html" class="sub-menu-item">Home</a></li>
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
+                    <li><a href="./index.html" class="sub-menu-item">Home</a></li>
 
 
 
-                            <li class="has-submenu parent-parent-menu-item">
-                                <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
+                    <li class="has-submenu parent-parent-menu-item">
+                        <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+
+
+
+                            <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Multi Level
+                                    Menu</a><span class="submenu-arrow"></span>
                                 <ul class="submenu">
-
-
-
-                                    <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Multi Level
-                                            Menu</a><span class="submenu-arrow"></span>
+                                    <li><a href="javascript:void(0)" class="sub-menu-item">Level 1.0</a></li>
+                                    <li class="has-submenu child-menu-item"><a href="javascript:void(0)"> Level
+                                            2.0 </a><span class="submenu-arrow"></span>
                                         <ul class="submenu">
-                                            <li><a href="javascript:void(0)" class="sub-menu-item">Level 1.0</a></li>
-                                            <li class="has-submenu child-menu-item"><a href="javascript:void(0)"> Level
-                                                    2.0 </a><span class="submenu-arrow"></span>
-                                                <ul class="submenu">
-                                                    <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.1</a>
-                                                    </li>
-                                                    <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.2</a>
-                                                    </li>
-                                                </ul>
+                                            <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.1</a>
+                                            </li>
+                                            <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.2</a>
                                             </li>
                                         </ul>
                                     </li>
-
                                 </ul>
                             </li>
 
+                        </ul>
+                    </li>
 
 
-                            <li class="has-submenu parent-menu-item">
-                                <a href="javascript:void(0)">Docs</a><span class="menu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="./components/ui-components.html" class="sub-menu-item">Components </a>
-                                    </li>
-                                    <li><a href="documentation.html" class="sub-menu-item">Documentation</a></li>
-                                    <li><a href="changelog.html" class="sub-menu-item">Changelog</a></li>
-                                    <li><a href="widget.html" class="sub-menu-item">Widget</a></li>
-                                </ul>
+
+                    <li class="has-submenu parent-menu-item">
+                        <a href="javascript:void(0)">Docs</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            <li><a href="./components/ui-components.html" class="sub-menu-item">Components
+                                </a>
                             </li>
+                            <li><a href="documentation.html" class="sub-menu-item">Documentation</a></li>
+                            <li><a href="changelog.html" class="sub-menu-item">Changelog</a></li>
+                            <li><a href="widget.html" class="sub-menu-item">Widget</a></li>
+                        </ul>
+                    </li>
 
-                            <li><a href="contact-one.html" class="sub-menu-item">Contact</a></li>
-                        </ul><!--end navigation menu-->
-                    </div><!--end navigation-->
-                </div><!--end container-->
-            </nav><!--end header-->
-            <!-- End Navbar -->
-        </header>
-
-
+                    <li><a href="./contact-one.html" class="sub-menu-item">Contact</a></li>
+                </ul><!--end navigation menu-->
+            </div><!--end navigation-->
+        </div><!--end container-->
+    </nav><!--end header-->
+    <!-- End Navbar -->
+</header>
 
 
         <!-- Start Hero -->
@@ -160,7 +157,7 @@
                             class="relative after:content-[''] after:absolute lg:after:-top-0 after:-top-10 after:-right-32 after:size-[36rem] after:border-2 after:border-dashed after:border-slate-300 dark:after:border-slate-700 after:rounded-full after:animate-[spin_120s_linear_infinite] after:-z-1 before:content-[''] before:absolute lg:before:-top-24 before:-top-36 before:-right-56 before:size-[48rem] before:border-2 before:border-dashed before:border-slate-200 dark:before:border-slate-700 before:rounded-full before:animate-[spin_240s_linear_infinite] before:-z-1">
                             <div
                                 class="relative after:content-[''] after:absolute lg:after:-top-0 after:-top-10 after:-right-40 after:size-[36rem] after:bg-gradient-to-tl after:to-indigo-600/30  after:from-red-600/30 dark:after:to-indigo-600/50 dark:after:from-red-600/50 after: after:blur-[200px] after:rounded-full after:-z-1">
-                                <img src="images/saas/light-dash.png" class="lg:max-w-none lg:ms-14" alt="">
+                                <img src="./images/saas/light-dash.png" class="lg:max-w-none lg:ms-14" alt="">
                             </div>
                         </div>
                     </div><!--end col-->
@@ -174,27 +171,27 @@
             <div class="container relative">
                 <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
                     <div class="mx-auto pt-6">
-                        <img src="images/client/amazon.svg" class="h-6" alt="">
+                        <img src="./images/client/amazon.svg" class="h-6" alt="">
                     </div>
 
                     <div class="mx-auto pt-6">
-                        <img src="images/client/google.svg" class="h-6" alt="">
+                        <img src="./images/client/google.svg" class="h-6" alt="">
                     </div>
 
                     <div class="mx-auto pt-6">
-                        <img src="images/client/lenovo.svg" class="h-6" alt="">
+                        <img src="./images/client/lenovo.svg" class="h-6" alt="">
                     </div>
 
                     <div class="mx-auto pt-6">
-                        <img src="images/client/paypal.svg" class="h-6" alt="">
+                        <img src="./images/client/paypal.svg" class="h-6" alt="">
                     </div>
 
                     <div class="mx-auto pt-6">
-                        <img src="images/client/shopify.svg" class="h-6" alt="">
+                        <img src="./images/client/shopify.svg" class="h-6" alt="">
                     </div>
 
                     <div class="mx-auto pt-6">
-                        <img src="images/client/spotify.svg" class="h-6" alt="">
+                        <img src="./images/client/spotify.svg" class="h-6" alt="">
                     </div>
                 </div><!--end grid-->
             </div><!--end container-->
@@ -255,7 +252,7 @@
                 <div class="grid md:grid-cols-2 grid-cols-1 items-center gap-[30px]">
                     <div
                         class="relative overflow-hidden rounded-lg border border-indigo-600/40 bg-indigo-600/10 dark:bg-indigo-600/20 lg:ps-12 ps-8 lg:pt-12 pt-8 lg:me-8">
-                        <img src="images/saas/1.png" class="ltr:rounded-tl-lg rtl:rounded-tr-lg" alt="">
+                        <img src="./images/saas/1.png" class="ltr:rounded-tl-lg rtl:rounded-tr-lg" alt="">
                     </div>
 
                     <div class="">
@@ -287,7 +284,7 @@
                     <div class="relative order-1 md:order-2">
                         <div
                             class="relative overflow-hidden rounded-lg border border-indigo-600/40 bg-indigo-600/10 dark:bg-indigo-600/20 lg:pe-12 pe-8 lg:pt-12 pt-8 lg:ms-8">
-                            <img src="images/saas/2.png" class="ltr:rounded-tr-lg rtl:rounded-tl-lg" alt="">
+                            <img src="./images/saas/2.png" class="ltr:rounded-tr-lg rtl:rounded-tl-lg" alt="">
                         </div>
                     </div>
 
@@ -472,7 +469,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="./images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -500,7 +497,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="./images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -532,7 +529,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="./images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -561,7 +558,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="./images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -593,7 +590,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="./images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -621,7 +618,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="./images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -653,7 +650,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="./images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -681,7 +678,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="./images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -713,7 +710,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="./images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -742,7 +739,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="./images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -774,7 +771,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="./images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -802,7 +799,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="./images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -833,7 +830,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="./images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -861,7 +858,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="./images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -893,7 +890,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="./images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -922,7 +919,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="./images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -954,7 +951,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="./images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -982,7 +979,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="./images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1013,7 +1010,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="./images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1041,7 +1038,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="./images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1073,7 +1070,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="./images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1102,7 +1099,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="./images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1134,7 +1131,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="./images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1162,7 +1159,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="./images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1193,7 +1190,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="./images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1221,7 +1218,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="./images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1253,7 +1250,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="./images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1282,7 +1279,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="./images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1314,7 +1311,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="./images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1342,7 +1339,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="./images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1373,7 +1370,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="./images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1401,7 +1398,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="./images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1433,7 +1430,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="./images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1462,7 +1459,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="./images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1494,7 +1491,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="./images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1522,7 +1519,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="./images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1778,7 +1775,7 @@
             <div class="container relative md:mt-24 mt-16 z-2">
                 <div class="grid md:grid-cols-12 grid-cols-1 items-center">
                     <div class="lg:col-span-5 md:col-span-6">
-                        <img src="images/illustrator/envelope.svg" class="mx-auto d-block" alt="">
+                        <img src="./images/illustrator/envelope.svg" class="mx-auto d-block" alt="">
                     </div>
 
                     <div class="lg:col-span-7 md:col-span-6">
@@ -1789,9 +1786,9 @@
                         <p class="text-slate-400 max-w-xl mb-0">Search all the open positions on the web. Get your own
                             personalized salary estimate. Read reviews on over 30000+ companies worldwide.</p>
                         <div class="my-5">
-                            <a href=""><img src="images/app/app.png" class="m-1 inline-block" alt=""></a>
+                            <a href=""><img src="./images/app/app.png" class="m-1 inline-block" alt=""></a>
 
-                            <a href=""><img src="images/app/playstore.png" class="m-1 inline-block" alt=""></a>
+                            <a href=""><img src="./images/app/playstore.png" class="m-1 inline-block" alt=""></a>
                         </div>
 
                         <div class="inline-block">
@@ -1810,11 +1807,24 @@
             </div><!--end container-->
         </section><!--end section-->
         <!-- End -->
+        <!-- Switcher -->
+        <div class="fixed top-[30%] -right-2 z-50">
+            <span class="relative inline-block rotate-90">
+                <input type="checkbox" class="checkbox opacity-0 absolute" id="chk" />
+                <label
+                    class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-800 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8"
+                    for="chk">
+                    <i class="uil uil-moon text-[20px] text-yellow-500"></i>
+                    <i class="uil uil-sun text-[20px] text-yellow-500"></i>
+                    <span
+                        class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] size-7"></span>
+                </label>
+            </span>
+        </div>
+        <!-- Switcher -->
 
-
-
-
-        <!-- Footer Start -->
+        <!-- Inject footer -->
+                <!-- Footer Start -->
         <footer class="footer bg-transparent relative text-slate-400">
             <div class="container relative">
                 <div class="grid grid-cols-12">
@@ -1823,8 +1833,8 @@
                             <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
                                 <div class="lg:col-span-4 md:col-span-12">
                                     <a href="#" class="text-[22px] focus:outline-none">
-                                        <img src="images/logo-dark.png" class="block dark:hidden" alt="">
-                                        <img src="images/logo-light.png" class="hidden dark:block" alt="">
+                                        <img src="../images/logo-dark.png" class="block dark:hidden" alt="">
+                                        <img src="../images/logo-light.png" class="hidden dark:block" alt="">
                                     </a>
                                     <p class="mt-6">Start working with Tailwind CSS that can provide everything you need
                                         to generate awareness, drive traffic, connect.</p>
@@ -1954,45 +1964,24 @@
                         </div>
 
                         <ul class="list-none md:text-end text-center mt-6 md:mt-0">
-                            <li class="inline"><a href=""><img src="images/payments/american-ex.png"
+                            <li class="inline"><a href=""><img src="../images/payments/american-ex.png"
                                         class="max-h-6 inline" title="American Express" alt=""></a></li>
-                            <li class="inline"><a href=""><img src="images/payments/discover.png" class="max-h-6 inline"
+                            <li class="inline"><a href=""><img src="../images/payments/discover.png" class="max-h-6 inline"
                                         title="Discover" alt=""></a></li>
-                            <li class="inline"><a href=""><img src="images/payments/master-card.png"
+                            <li class="inline"><a href=""><img src="../images/payments/master-card.png"
                                         class="max-h-6 inline" title="Master Card" alt=""></a></li>
-                            <li class="inline"><a href=""><img src="images/payments/paypal.png" class="max-h-6 inline"
+                            <li class="inline"><a href=""><img src="../images/payments/paypal.png" class="max-h-6 inline"
                                         title="Paypal" alt=""></a></li>
-                            <li class="inline"><a href=""><img src="images/payments/visa.png" class="max-h-6 inline"
+                            <li class="inline"><a href=""><img src="../images/payments/visa.png" class="max-h-6 inline"
                                         title="Visa" alt=""></a></li>
                         </ul>
                     </div><!--end grid-->
                 </div><!--end container-->
             </div>
         </footer><!--end footer-->
-        <!-- Footer End -->
-        <!-- Switcher -->
-        <div class="fixed top-[30%] -right-2 z-50">
-            <span class="relative inline-block rotate-90">
-                <input type="checkbox" class="checkbox opacity-0 absolute" id="chk" />
-                <label
-                    class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-800 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8"
-                    for="chk">
-                    <i class="uil uil-moon text-[20px] text-yellow-500"></i>
-                    <i class="uil uil-sun text-[20px] text-yellow-500"></i>
-                    <span
-                        class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] size-7"></span>
-                </label>
-            </span>
-        </div>
-        <!-- Switcher -->
-
-
 
         
-  <!-- Modern browsers -->
   <script type="module" src="./js/app-min-v1.0.2.js"></script>
-  
-  <!-- Legacy fallback -->
   <script nomodule src="./js/app-legacy-min-v1.0.2.js"></script>
         
 

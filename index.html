@@ -19,9 +19,6 @@
         <!-- Style -->
 
         <!-- __STYLE_TAG__ -->
-
-
-
     </head>
 
     <body class="font-nunito text-base text-slate-900 dark:text-white dark:bg-slate-900">
@@ -30,87 +27,8 @@
         <span
             class="fixed blur-[200px] lg:size-[600px] size-[400px] rounded-full bottom-[10%] md:end-[10%] -end-[20%] bg-red-600/20"></span>
 
-        <header id="header" class=" fixed-top d-flex align-items-center bg-black">
-            <!-- Start Navbar -->
-            <nav id="topnav" class="defaultscroll is-sticky">
-                <div class="container relative">
-                    <!-- Logo container-->
-                    <a class="logo" href="./index.html">
-                        <img src="images/logo-dark.png" class="inline-block dark:hidden" alt="">
-                        <img src="images/logo-light.png" class="hidden dark:inline-block" alt="">
-                    </a>
-
-                    <!-- End Logo container-->
-                    <div class="menu-extras">
-                        <div class="menu-item">
-                            <!-- Mobile menu toggle-->
-                            <a class="navbar-toggle" id="isToggle">
-                                <div class="lines">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </a>
-                            <!-- End mobile menu toggle-->
-                        </div>
-                    </div>
-
-
-
-                    <div id="navigation">
-                        <!-- Navigation Menu-->
-                        <ul class="navigation-menu">
-                            <li><a href="./index.html" class="sub-menu-item">Home</a></li>
-
-
-
-                            <li class="has-submenu parent-parent-menu-item">
-                                <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
-                                <ul class="submenu">
-
-
-
-                                    <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Multi Level
-                                            Menu</a><span class="submenu-arrow"></span>
-                                        <ul class="submenu">
-                                            <li><a href="javascript:void(0)" class="sub-menu-item">Level 1.0</a></li>
-                                            <li class="has-submenu child-menu-item"><a href="javascript:void(0)"> Level
-                                                    2.0 </a><span class="submenu-arrow"></span>
-                                                <ul class="submenu">
-                                                    <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.1</a>
-                                                    </li>
-                                                    <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.2</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-
-                                </ul>
-                            </li>
-
-
-
-                            <li class="has-submenu parent-menu-item">
-                                <a href="javascript:void(0)">Docs</a><span class="menu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="./components/ui-components.html" class="sub-menu-item">Components </a>
-                                    </li>
-                                    <li><a href="documentation.html" class="sub-menu-item">Documentation</a></li>
-                                    <li><a href="changelog.html" class="sub-menu-item">Changelog</a></li>
-                                    <li><a href="widget.html" class="sub-menu-item">Widget</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a href="contact-one.html" class="sub-menu-item">Contact</a></li>
-                        </ul><!--end navigation menu-->
-                    </div><!--end navigation-->
-                </div><!--end container-->
-            </nav><!--end header-->
-            <!-- End Navbar -->
-        </header>
-
-
+        <!-- Inject header -->
+        <!-- @insert:partials/header.html -->
 
 
         <!-- Start Hero -->
@@ -155,7 +73,7 @@
                             class="relative after:content-[''] after:absolute lg:after:-top-0 after:-top-10 after:-right-32 after:size-[36rem] after:border-2 after:border-dashed after:border-slate-300 dark:after:border-slate-700 after:rounded-full after:animate-[spin_120s_linear_infinite] after:-z-1 before:content-[''] before:absolute lg:before:-top-24 before:-top-36 before:-right-56 before:size-[48rem] before:border-2 before:border-dashed before:border-slate-200 dark:before:border-slate-700 before:rounded-full before:animate-[spin_240s_linear_infinite] before:-z-1">
                             <div
                                 class="relative after:content-[''] after:absolute lg:after:-top-0 after:-top-10 after:-right-40 after:size-[36rem] after:bg-gradient-to-tl after:to-indigo-600/30  after:from-red-600/30 dark:after:to-indigo-600/50 dark:after:from-red-600/50 after: after:blur-[200px] after:rounded-full after:-z-1">
-                                <img src="images/saas/light-dash.png" class="lg:max-w-none lg:ms-14" alt="">
+                                <img src="__REL_PATH__/images/saas/light-dash.png" class="lg:max-w-none lg:ms-14" alt="">
                             </div>
                         </div>
                     </div><!--end col-->
@@ -169,27 +87,27 @@
             <div class="container relative">
                 <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
                     <div class="mx-auto pt-6">
-                        <img src="images/client/amazon.svg" class="h-6" alt="">
+                        <img src="__REL_PATH__/images/client/amazon.svg" class="h-6" alt="">
                     </div>
 
                     <div class="mx-auto pt-6">
-                        <img src="images/client/google.svg" class="h-6" alt="">
+                        <img src="__REL_PATH__/images/client/google.svg" class="h-6" alt="">
                     </div>
 
                     <div class="mx-auto pt-6">
-                        <img src="images/client/lenovo.svg" class="h-6" alt="">
+                        <img src="__REL_PATH__/images/client/lenovo.svg" class="h-6" alt="">
                     </div>
 
                     <div class="mx-auto pt-6">
-                        <img src="images/client/paypal.svg" class="h-6" alt="">
+                        <img src="__REL_PATH__/images/client/paypal.svg" class="h-6" alt="">
                     </div>
 
                     <div class="mx-auto pt-6">
-                        <img src="images/client/shopify.svg" class="h-6" alt="">
+                        <img src="__REL_PATH__/images/client/shopify.svg" class="h-6" alt="">
                     </div>
 
                     <div class="mx-auto pt-6">
-                        <img src="images/client/spotify.svg" class="h-6" alt="">
+                        <img src="__REL_PATH__/images/client/spotify.svg" class="h-6" alt="">
                     </div>
                 </div><!--end grid-->
             </div><!--end container-->
@@ -250,7 +168,7 @@
                 <div class="grid md:grid-cols-2 grid-cols-1 items-center gap-[30px]">
                     <div
                         class="relative overflow-hidden rounded-lg border border-indigo-600/40 bg-indigo-600/10 dark:bg-indigo-600/20 lg:ps-12 ps-8 lg:pt-12 pt-8 lg:me-8">
-                        <img src="images/saas/1.png" class="ltr:rounded-tl-lg rtl:rounded-tr-lg" alt="">
+                        <img src="__REL_PATH__/images/saas/1.png" class="ltr:rounded-tl-lg rtl:rounded-tr-lg" alt="">
                     </div>
 
                     <div class="">
@@ -282,7 +200,7 @@
                     <div class="relative order-1 md:order-2">
                         <div
                             class="relative overflow-hidden rounded-lg border border-indigo-600/40 bg-indigo-600/10 dark:bg-indigo-600/20 lg:pe-12 pe-8 lg:pt-12 pt-8 lg:ms-8">
-                            <img src="images/saas/2.png" class="ltr:rounded-tr-lg rtl:rounded-tl-lg" alt="">
+                            <img src="__REL_PATH__/images/saas/2.png" class="ltr:rounded-tr-lg rtl:rounded-tl-lg" alt="">
                         </div>
                     </div>
 
@@ -467,7 +385,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="__REL_PATH__/images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -495,7 +413,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="__REL_PATH__/images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -527,7 +445,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="__REL_PATH__/images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -556,7 +474,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="__REL_PATH__/images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -588,7 +506,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="__REL_PATH__/images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -616,7 +534,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="__REL_PATH__/images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -648,7 +566,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="__REL_PATH__/images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -676,7 +594,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="__REL_PATH__/images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -708,7 +626,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="__REL_PATH__/images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -737,7 +655,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="__REL_PATH__/images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -769,7 +687,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="__REL_PATH__/images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -797,7 +715,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="__REL_PATH__/images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -828,7 +746,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="__REL_PATH__/images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -856,7 +774,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="__REL_PATH__/images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -888,7 +806,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="__REL_PATH__/images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -917,7 +835,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="__REL_PATH__/images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -949,7 +867,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="__REL_PATH__/images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -977,7 +895,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="__REL_PATH__/images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1008,7 +926,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="__REL_PATH__/images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1036,7 +954,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="__REL_PATH__/images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1068,7 +986,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="__REL_PATH__/images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1097,7 +1015,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="__REL_PATH__/images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1129,7 +1047,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="__REL_PATH__/images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1157,7 +1075,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="__REL_PATH__/images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1188,7 +1106,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="__REL_PATH__/images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1216,7 +1134,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="__REL_PATH__/images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1248,7 +1166,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="__REL_PATH__/images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1277,7 +1195,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="__REL_PATH__/images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1309,7 +1227,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="__REL_PATH__/images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1337,7 +1255,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="__REL_PATH__/images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1368,7 +1286,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/01.jpg"
+                                            <img src="__REL_PATH__/images/client/01.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1396,7 +1314,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/05.jpg"
+                                            <img src="__REL_PATH__/images/client/05.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1428,7 +1346,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/02.jpg"
+                                            <img src="__REL_PATH__/images/client/02.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1457,7 +1375,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/04.jpg"
+                                            <img src="__REL_PATH__/images/client/04.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1489,7 +1407,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/03.jpg"
+                                            <img src="__REL_PATH__/images/client/03.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1517,7 +1435,7 @@
                                     <li class="rounded-lg shadow dark:shadow-gray-800 p-6 border-b-4 border-indigo-600">
                                         <div
                                             class="flex items-center pb-6 border-b border-gray-200 dark:border-gray-800">
-                                            <img src="images/client/06.jpg"
+                                            <img src="__REL_PATH__/images/client/06.jpg"
                                                 class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
 
                                             <div class="ps-4">
@@ -1773,7 +1691,7 @@
             <div class="container relative md:mt-24 mt-16 z-2">
                 <div class="grid md:grid-cols-12 grid-cols-1 items-center">
                     <div class="lg:col-span-5 md:col-span-6">
-                        <img src="images/illustrator/envelope.svg" class="mx-auto d-block" alt="">
+                        <img src="__REL_PATH__/images/illustrator/envelope.svg" class="mx-auto d-block" alt="">
                     </div>
 
                     <div class="lg:col-span-7 md:col-span-6">
@@ -1784,9 +1702,9 @@
                         <p class="text-slate-400 max-w-xl mb-0">Search all the open positions on the web. Get your own
                             personalized salary estimate. Read reviews on over 30000+ companies worldwide.</p>
                         <div class="my-5">
-                            <a href=""><img src="images/app/app.png" class="m-1 inline-block" alt=""></a>
+                            <a href=""><img src="__REL_PATH__/images/app/app.png" class="m-1 inline-block" alt=""></a>
 
-                            <a href=""><img src="images/app/playstore.png" class="m-1 inline-block" alt=""></a>
+                            <a href=""><img src="__REL_PATH__/images/app/playstore.png" class="m-1 inline-block" alt=""></a>
                         </div>
 
                         <div class="inline-block">
@@ -1805,166 +1723,6 @@
             </div><!--end container-->
         </section><!--end section-->
         <!-- End -->
-
-
-
-
-        <!-- Footer Start -->
-        <footer class="footer bg-transparent relative text-slate-400">
-            <div class="container relative">
-                <div class="grid grid-cols-12">
-                    <div class="col-span-12">
-                        <div class="pb-[60px] px-0">
-                            <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
-                                <div class="lg:col-span-4 md:col-span-12">
-                                    <a href="#" class="text-[22px] focus:outline-none">
-                                        <img src="images/logo-dark.png" class="block dark:hidden" alt="">
-                                        <img src="images/logo-light.png" class="hidden dark:block" alt="">
-                                    </a>
-                                    <p class="mt-6">Start working with Tailwind CSS that can provide everything you need
-                                        to generate awareness, drive traffic, connect.</p>
-                                    <ul class="list-none mt-6">
-                                        <li class="inline"><a href="https://1.envato.market/techwind" target="_blank"
-                                                class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
-                                                    class="uil uil-shopping-cart align-middle" title="Buy Now"></i></a>
-                                        </li>
-                                        <li class="inline"><a href="https://dribbble.com/shreethemes" target="_blank"
-                                                class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
-                                                    class="uil uil-dribbble align-middle" title="dribbble"></i></a></li>
-                                        <li class="inline"><a href="https://www.behance.net/shreethemes" target="_blank"
-                                                class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
-                                                    class="uil uil-behance" title="Behance"></i></a></li>
-                                        <li class="inline"><a href="http://linkedin.com/company/shreethemes"
-                                                target="_blank"
-                                                class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
-                                                    class="uil uil-linkedin" title="Linkedin"></i></a></li>
-                                        <li class="inline"><a href="https://www.facebook.com/shreethemes"
-                                                target="_blank"
-                                                class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
-                                                    class="uil uil-facebook-f align-middle" title="facebook"></i></a>
-                                        </li>
-                                        <li class="inline"><a href="https://www.instagram.com/shreethemes/"
-                                                target="_blank"
-                                                class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
-                                                    class="uil uil-instagram align-middle" title="instagram"></i></a>
-                                        </li>
-                                        <li class="inline"><a href="https://twitter.com/shreethemes" target="_blank"
-                                                class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
-                                                    class="uil uil-twitter align-middle" title="twitter"></i></a></li>
-                                        <li class="inline"><a href="mailto:support@shreethemes.in"
-                                                class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
-                                                    class="uil uil-envelope align-middle" title="email"></i></a></li>
-                                        <li class="inline"><a href="https://forms.gle/QkTueCikDGqJnbky9" target="_blank"
-                                                class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
-                                                    class="uil uil-file align-middle" title="customization"></i></a>
-                                        </li>
-                                    </ul><!--end icon-->
-                                </div><!--end col-->
-
-                                <div class="lg:col-span-2 md:col-span-4">
-                                    <h5 class="tracking-[1px] text-black dark:text-white font-semibold">Company</h5>
-                                    <ul class="list-none footer-list mt-6">
-                                        <li><a href="page-aboutus.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> About us</a></li>
-                                        <li class="mt-[10px]"><a href="page-services.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Services</a></li>
-                                        <li class="mt-[10px]"><a href="page-team.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Team</a></li>
-                                        <li class="mt-[10px]"><a href="page-pricing.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Pricing</a></li>
-                                        <li class="mt-[10px]"><a href="portfolio-creative-four.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Project</a></li>
-                                        <li class="mt-[10px]"><a href="blog.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Blog</a></li>
-                                        <li class="mt-[10px]"><a href="auth-login.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Login</a></li>
-                                    </ul>
-                                </div><!--end col-->
-
-                                <div class="lg:col-span-3 md:col-span-4">
-                                    <h5 class="tracking-[1px] text-black dark:text-white font-semibold">Usefull Links
-                                    </h5>
-                                    <ul class="list-none footer-list mt-6">
-                                        <li><a href="page-terms.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Terms of Services</a></li>
-                                        <li class="mt-[10px]"><a href="page-privacy.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Privacy Policy</a></li>
-                                        <li class="mt-[10px]"><a href="documentation.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Documentation</a></li>
-                                        <li class="mt-[10px]"><a href="changelog.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Changelog</a></li>
-                                        <li class="mt-[10px]"><a href="widget.html"
-                                                class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i
-                                                    class="uil uil-angle-right-b"></i> Widget</a></li>
-                                    </ul>
-                                </div><!--end col-->
-
-                                <div class="lg:col-span-3 md:col-span-4">
-                                    <h5 class="tracking-[1px] text-black dark:text-white font-semibold">Newsletter</h5>
-                                    <p class="mt-6">Sign up and receive the latest tips via email.</p>
-                                    <form>
-                                        <div class="grid grid-cols-1">
-                                            <div class="my-3">
-                                                <label class="form-label">Write your email <span
-                                                        class="text-red-600">*</span></label>
-                                                <div class="form-icon relative mt-2">
-                                                    <i data-feather="mail" class="size-4 absolute top-3 start-4"></i>
-                                                    <input type="email"
-                                                        class="form-input ps-12 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
-                                                        placeholder="Email" name="email" required="">
-                                                </div>
-                                            </div>
-
-                                            <button type="submit" id="submitsubscribe" name="send"
-                                                class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md">Subscribe</button>
-                                        </div>
-                                    </form>
-                                </div><!--end col-->
-                            </div><!--end grid-->
-                        </div><!--end col-->
-                    </div>
-                </div><!--end grid-->
-            </div><!--end container-->
-
-            <div class="py-[30px] px-0 border-t border-gray-100 dark:border-slate-800">
-                <div class="container relative text-center">
-                    <div class="grid md:grid-cols-2 items-center">
-                        <div class="md:text-start text-center">
-                            <p class="mb-0">©
-                                <script>document.write(new Date().getFullYear())</script> Techwind. Design with <i
-                                    class="mdi mdi-heart text-red-600"></i> by <a href="https://shreethemes.in/"
-                                    target="_blank" class="text-reset">Shreethemes</a>.
-                            </p>
-                        </div>
-
-                        <ul class="list-none md:text-end text-center mt-6 md:mt-0">
-                            <li class="inline"><a href=""><img src="images/payments/american-ex.png"
-                                        class="max-h-6 inline" title="American Express" alt=""></a></li>
-                            <li class="inline"><a href=""><img src="images/payments/discover.png" class="max-h-6 inline"
-                                        title="Discover" alt=""></a></li>
-                            <li class="inline"><a href=""><img src="images/payments/master-card.png"
-                                        class="max-h-6 inline" title="Master Card" alt=""></a></li>
-                            <li class="inline"><a href=""><img src="images/payments/paypal.png" class="max-h-6 inline"
-                                        title="Paypal" alt=""></a></li>
-                            <li class="inline"><a href=""><img src="images/payments/visa.png" class="max-h-6 inline"
-                                        title="Visa" alt=""></a></li>
-                        </ul>
-                    </div><!--end grid-->
-                </div><!--end container-->
-            </div>
-        </footer><!--end footer-->
-        <!-- Footer End -->
         <!-- Switcher -->
         <div class="fixed top-[30%] -right-2 z-50">
             <span class="relative inline-block rotate-90">
@@ -1981,7 +1739,8 @@
         </div>
         <!-- Switcher -->
 
-
+        <!-- Inject footer -->
+        <!-- @insert:partials/footer.html -->
 
         <!-- __SCRIPT_TAG__ -->
 

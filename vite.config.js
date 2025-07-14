@@ -1,16 +1,13 @@
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
-import pkg from './package.json';
-import viteCompression from 'vite-plugin-compression';
-// import { glob } from 'glob';
-import { globSync } from 'glob'; // or 'glob' if you're using old version
+import fs from 'fs/promises';
+import { globSync } from 'glob';
 import legacy from '@vitejs/plugin-legacy';
-import fs from 'fs';
+import viteCompression from 'vite-plugin-compression';
+import pkg from './package.json';
 
-import { fileURLToPath } from 'url';
-
-// Replace __APP_VERSION__ in HTML
+// Inject version like __APP_VERSION__
 const htmlVersionPlugin = () => {
   const version = pkg.version;
   return {
@@ -21,35 +18,7 @@ const htmlVersionPlugin = () => {
   };
 };
 
-// const htmlScriptAndStyleInjectPlugin = () => {
-//   return {
-//     name: 'html-script-style-inject',
-//     transformIndexHtml(html, ctx) {
-//       const isBuild = ctx?.server === undefined;
-//       const version = pkg.version;
-
-//       const scriptTags = isBuild
-//         ? `
-//   <!-- Modern browsers -->
-//   <script type="module" src="js/app-min-v${version}.js"></script>
-
-//   <!-- Legacy fallback for GoDaddy/IE11 -->
-//   <script nomodule src="js/app-legacy-min-v${version}.js"></script>
-//         `
-//         : `<script type="module" src="/src/js/app.js"></script>`;
-
-//       const styleTag = isBuild
-//         ? `<link rel="stylesheet" href="css/app-min-v${version}.css" />`
-//         : '';
-
-//       return html
-//         .replace('<!-- __STYLE_TAG__ -->', styleTag)
-//         .replace('<!-- __SCRIPT_TAG__ -->', scriptTags);
-//     },
-//   };
-// };
-
-// ✅ Inject style/script dynamically with correct relative paths
+// Inject <script> and <link> with correct relative paths
 const htmlScriptAndStyleInjectPlugin = () => {
   return {
     name: 'html-script-style-inject',
@@ -57,27 +26,24 @@ const htmlScriptAndStyleInjectPlugin = () => {
       const isBuild = ctx?.server === undefined;
       const version = pkg.version;
 
-      // Only during build, calculate relative path
+      // Calculate relative path
       let relativePath = '.';
-      if (isBuild && ctx.filename) {
+      if (isBuild && ctx?.filename) {
         const htmlDir = path.posix.dirname(ctx.filename.replace(/\\/g, '/'));
         relativePath = path.posix.relative(htmlDir, '.');
-        if (!relativePath) relativePath = '.'; // fallback
+        if (!relativePath) relativePath = '.';
       }
-
-      const scriptTags = isBuild
-        ? `
-  <!-- Modern browsers -->
-  <script type="module" src="${relativePath}/js/app-min-v${version}.js"></script>
-  
-  <!-- Legacy fallback -->
-  <script nomodule src="${relativePath}/js/app-legacy-min-v${version}.js"></script>
-        `
-        : `<script type="module" src="/src/js/app.js"></script>`;
 
       const styleTag = isBuild
         ? `<link rel="stylesheet" href="${relativePath}/css/app-min-v${version}.css" />`
         : '';
+
+      const scriptTags = isBuild
+        ? `
+  <script type="module" src="${relativePath}/js/app-min-v${version}.js"></script>
+  <script nomodule src="${relativePath}/js/app-legacy-min-v${version}.js"></script>
+        `
+        : `<script type="module" src="/src/js/app.js"></script>`;
 
       return html
         .replace('<!-- __STYLE_TAG__ -->', styleTag)
@@ -86,14 +52,72 @@ const htmlScriptAndStyleInjectPlugin = () => {
   };
 };
 
-// Get all HTML files and inject app.js as entry
+// Inject HTML partials like <!-- @insert:partials/header.html -->
+const htmlPartialPlugin = () => {
+  return {
+    name: 'vite-html-partial-plugin',
+    enforce: 'pre',
+    async transformIndexHtml(html, { filename }) {
+      const partialPattern = /<!--\s*@insert:(.*?)\s*-->/g;
+
+      const replaceAsync = async (str, regex, asyncFn) => {
+        const promises = [];
+        html.replace(regex, (match, ...args) => {
+          promises.push(asyncFn(match, ...args));
+          return match;
+        });
+        const data = await Promise.all(promises);
+        return html.replace(regex, () => data.shift());
+      };
+
+      return await replaceAsync(
+        html,
+        partialPattern,
+        async (_match, partialPath) => {
+          const resolvedPath = path.resolve(process.cwd(), partialPath.trim());
+          try {
+            const stats = await fs.stat(resolvedPath);
+            if (stats.isDirectory()) {
+              throw new Error(`${partialPath} is a directory`);
+            }
+            return await fs.readFile(resolvedPath, 'utf-8');
+          } catch (err) {
+            console.error(
+              `[vite-html-partial-plugin] Failed to include ${partialPath}:`,
+              err.message
+            );
+            return `<!-- Error including ${partialPath} -->`;
+          }
+        }
+      );
+    },
+  };
+};
+
+// Inject __REL_PATH__ placeholder dynamically
+const htmlRelativePathPlugin = () => {
+  return {
+    name: 'vite-relative-path-plugin',
+    transformIndexHtml(html, ctx = {}) {
+      const htmlDir = ctx.filename
+        ? path.posix.dirname(ctx.filename.replace(/\\/g, '/'))
+        : '.';
+
+      let baseUrl = path.posix.relative(htmlDir, '.');
+      if (!baseUrl || baseUrl === '') baseUrl = '.';
+
+      return html.replace(/__REL_PATH__/g, baseUrl);
+    },
+  };
+};
+
+// Discover all HTML files for multi-page input
 function getHtmlInputs() {
   const htmlFiles = globSync('./**/*.html', {
     ignore: ['node_modules/**', '.*', 'dist/**'],
   });
 
   const inputs = {};
-
   htmlFiles.forEach(file => {
     const name = path
       .relative(__dirname, file)
@@ -102,8 +126,8 @@ function getHtmlInputs() {
     inputs[name] = path.resolve(__dirname, file);
   });
 
+  // Add main app entry
   inputs.app = path.resolve(__dirname, 'src/js/app.js');
-
   return inputs;
 }
 
@@ -115,6 +139,8 @@ export default defineConfig({
     htmlVersionPlugin(),
     viteCompression(),
     htmlScriptAndStyleInjectPlugin(),
+    htmlPartialPlugin(),
+    htmlRelativePathPlugin(),
     legacy({
       targets: ['defaults', 'not IE 11'],
       renderLegacyChunks: true,
@@ -127,16 +153,16 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    minify: 'esbuild', // switch to 'terser' if needed
-
+    minify: 'esbuild',
+    modulePreload: false,
+    target: 'es2015',
     rollupOptions: {
       input: getHtmlInputs(),
       output: {
-        entryFileNames: chunkInfo => {
-          return chunkInfo.name === 'app'
+        entryFileNames: chunkInfo =>
+          chunkInfo.name === 'app'
             ? `js/app-min-v${pkg.version}.js`
-            : `js/[name]-min-v${pkg.version}.js`;
-        },
+            : `js/[name]-min-v${pkg.version}.js`,
         chunkFileNames: `js/[name]-min-v${pkg.version}.js`,
         assetFileNames: assetInfo => {
           const name = assetInfo.name ?? '';
@@ -149,8 +175,6 @@ export default defineConfig({
         },
       },
     },
-    modulePreload: false, // 👈 prevents <link rel="modulepreload">
-    target: 'es2015',
   },
   resolve: {
     alias: {

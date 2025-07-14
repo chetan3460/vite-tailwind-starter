@@ -30,84 +30,89 @@
     </head>
 
     <body class="font-nunito text-base text-slate-900 dark:text-white dark:bg-slate-900">
-        <header id="header" class="">
-            <!-- Start Navbar -->
-            <nav id="topnav" class="defaultscroll is-sticky">
-                <div class="container relative">
-                    <!-- Logo container-->
-                    <a class="logo" href="../index.html">
-                        <img src="../images/logo-dark.png" class="inline-block dark:hidden" alt="">
-                        <img src="../images/logo-light.png" class="hidden dark:inline-block" alt="">
-                    </a>
 
-                    <!-- End Logo container-->
-                    <div class="menu-extras">
-                        <div class="menu-item">
-                            <!-- Mobile menu toggle-->
-                            <a class="navbar-toggle" id="isToggle">
-                                <div class="lines">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </a>
-                            <!-- End mobile menu toggle-->
+          <!-- Inject header -->
+        <header id="header" class=" fixed-top d-flex align-items-center bg-black">
+    <!-- Start Navbar -->
+    <nav id="topnav" class="defaultscroll is-sticky">
+        <div class="container relative">
+            <!-- Logo container-->
+            <a class="logo" href="../index.html">
+                <img src="../images/logo-dark.png" class="inline-block dark:hidden" alt="">
+                <img src="../images/logo-light.png" class="hidden dark:inline-block" alt="">
+            </a>
+
+            <!-- End Logo container-->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle" id="isToggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
-                    </div>
+                    </a>
+                    <!-- End mobile menu toggle-->
+                </div>
+            </div>
 
 
 
-                    <div id="navigation">
-                        <!-- Navigation Menu-->
-                        <ul class="navigation-menu">
-                            <li><a href="../index.html" class="sub-menu-item">Home</a></li>
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
+                    <li><a href="../index.html" class="sub-menu-item">Home</a></li>
 
 
 
-                            <li class="has-submenu parent-parent-menu-item">
-                                <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
+                    <li class="has-submenu parent-parent-menu-item">
+                        <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+
+
+
+                            <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Multi Level
+                                    Menu</a><span class="submenu-arrow"></span>
                                 <ul class="submenu">
-
-
-
-                                    <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Multi Level
-                                            Menu</a><span class="submenu-arrow"></span>
+                                    <li><a href="javascript:void(0)" class="sub-menu-item">Level 1.0</a></li>
+                                    <li class="has-submenu child-menu-item"><a href="javascript:void(0)"> Level
+                                            2.0 </a><span class="submenu-arrow"></span>
                                         <ul class="submenu">
-                                            <li><a href="javascript:void(0)" class="sub-menu-item">Level 1.0</a></li>
-                                            <li class="has-submenu child-menu-item"><a href="javascript:void(0)"> Level
-                                                    2.0 </a><span class="submenu-arrow"></span>
-                                                <ul class="submenu">
-                                                    <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.1</a>
-                                                    </li>
-                                                    <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.2</a>
-                                                    </li>
-                                                </ul>
+                                            <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.1</a>
+                                            </li>
+                                            <li><a href="javascript:void(0)" class="sub-menu-item">Level 2.2</a>
                                             </li>
                                         </ul>
                                     </li>
-
                                 </ul>
                             </li>
 
+                        </ul>
+                    </li>
 
 
-                            <li class="has-submenu parent-menu-item">
-                                <a href="javascript:void(0)">Docs</a><span class="menu-arrow"></span>
-                                <ul class="submenu">
-                                    <li><a href="../components/ui-components.html" class="sub-menu-item">Components </a></li>
-                                    <li><a href="documentation.html" class="sub-menu-item">Documentation</a></li>
-                                    <li><a href="changelog.html" class="sub-menu-item">Changelog</a></li>
-                                    <li><a href="widget.html" class="sub-menu-item">Widget</a></li>
-                                </ul>
+
+                    <li class="has-submenu parent-menu-item">
+                        <a href="javascript:void(0)">Docs</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            <li><a href="../components/ui-components.html" class="sub-menu-item">Components
+                                </a>
                             </li>
+                            <li><a href="documentation.html" class="sub-menu-item">Documentation</a></li>
+                            <li><a href="changelog.html" class="sub-menu-item">Changelog</a></li>
+                            <li><a href="widget.html" class="sub-menu-item">Widget</a></li>
+                        </ul>
+                    </li>
 
-                            <li><a href="contact-one.html" class="sub-menu-item">Contact</a></li>
-                        </ul><!--end navigation menu-->
-                    </div><!--end navigation-->
-                </div><!--end container-->
-            </nav><!--end header-->
-            <!-- End Navbar -->
-        </header>
+                    <li><a href="../contact-one.html" class="sub-menu-item">Contact</a></li>
+                </ul><!--end navigation menu-->
+            </div><!--end navigation-->
+        </div><!--end container-->
+    </nav><!--end header-->
+    <!-- End Navbar -->
+</header>
+
 
         <!-- Start Hero -->
         <section class="relative table w-full py-32 lg:py-40 bg-gray-50 dark:bg-slate-800">
@@ -3015,7 +3020,10 @@
             class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-indigo-600 text-white leading-9"><i
                 class="uil uil-arrow-up"></i></a>
         <!-- Back to top -->
+
         <!-- Footer Start -->
+             <!-- Inject footer -->
+                <!-- Footer Start -->
         <footer class="footer bg-transparent relative text-slate-400">
             <div class="container relative">
                 <div class="grid grid-cols-12">
@@ -3170,7 +3178,10 @@
                 </div><!--end container-->
             </div>
         </footer><!--end footer-->
+         
         <!-- Footer End -->
+
+
         <!-- Switcher -->
         <div class="fixed top-[30%] -right-2 z-50">
             <span class="relative inline-block rotate-90">
@@ -3189,10 +3200,7 @@
 
 
         
-  <!-- Modern browsers -->
   <script type="module" src="../js/app-min-v1.0.2.js"></script>
-  
-  <!-- Legacy fallback -->
   <script nomodule src="../js/app-legacy-min-v1.0.2.js"></script>
         
 
