@@ -1,15 +1,12 @@
-// import gsap from "gsap";
-// import { max767, min1024 } from "../utils";
-
 export default class Header {
   constructor({ header, htmlBody }) {
     this.header = header;
     this.htmlBody = htmlBody;
-
     this.bindEvents();
     this.stickyMenu();
     this.toggleMenu();
-    // this.activateMenu();
+    this.addActivateMenu();
+    this.submenuToggle();
   }
 
   bindEvents = () => {};
@@ -53,55 +50,83 @@ export default class Header {
       });
     }
   };
+  // Add 'active' class to the current menu item based on the URL
+  // This helps in highlighting the current page in the navigation menu
+  addActivateMenu = () => {
+    const menuItems = document.querySelectorAll('.sub-menu-item');
+    if (!menuItems.length) return;
 
-  // activateMenu = () => {
-  //   var menuItems = document.getElementsByClassName('sub-menu-item');
-  //   if (menuItems) {
-  //     var matchingMenuItem = null;
-  //     for (var idx = 0; idx < menuItems.length; idx++) {
-  //       if (menuItems[idx].href === window.location.href) {
-  //         matchingMenuItem = menuItems[idx];
-  //       }
-  //     }
+    const currentPage =
+      window.location.pathname.split('/').pop() || 'index.html';
 
-  //     if (matchingMenuItem) {
-  //       matchingMenuItem.classList.add('active');
+    menuItems.forEach(item => {
+      const linkPage = item.getAttribute('href')?.split('/').pop();
+      if (linkPage === currentPage) {
+        item.classList.add('active');
 
-  //       var immediateParent = getClosest(matchingMenuItem, 'li');
+        const li = this.getClosest(item, 'li');
+        li?.classList.add('active');
 
-  //       if (immediateParent) {
-  //         immediateParent.classList.add('active');
-  //       }
+        const childMenu = this.getClosest(li, '.child-menu-item');
+        childMenu?.classList.add('active');
 
-  //       var parent = getClosest(immediateParent, '.child-menu-item');
-  //       if (parent) {
-  //         parent.classList.add('active');
-  //       }
+        const parentMenu = this.getClosest(
+          childMenu || li,
+          '.parent-menu-item'
+        );
+        parentMenu?.classList.add('active');
 
-  //       var parent = getClosest(parent || immediateParent, '.parent-menu-item');
+        const topItem = parentMenu?.querySelector('.menu-item');
+        topItem?.classList.add('active');
 
-  //       if (parent) {
-  //         parent.classList.add('active');
+        const parentOfParent = this.getClosest(
+          parentMenu || item,
+          '.parent-parent-menu-item'
+        );
+        parentOfParent?.classList.add('active');
+      }
+    });
+  };
+  getClosest = (elem, selector) => {
+    while (elem && elem !== document) {
+      if (elem.matches(selector)) return elem;
+      elem = elem.parentNode;
+    }
+    return null;
+  };
 
-  //         var parentMenuitem = parent.querySelector('.menu-item');
-  //         if (parentMenuitem) {
-  //           parentMenuitem.classList.add('active');
-  //         }
+  // Submenu Toggle
+  // This function toggles the visibility of submenus when their parent menu item is clicked
+  submenuToggle = () => {
+    const nav = document.getElementById('navigation');
 
-  //         var parentOfParent = getClosest(parent, '.parent-parent-menu-item');
-  //         if (parentOfParent) {
-  //           parentOfParent.classList.add('active');
-  //         }
-  //       } else {
-  //         var parentOfParent = getClosest(
-  //           matchingMenuItem,
-  //           '.parent-parent-menu-item'
-  //         );
-  //         if (parentOfParent) {
-  //           parentOfParent.classList.add('active');
-  //         }
-  //       }
-  //     }
-  //   }
-  // };
+    if (nav) {
+      const toggles = nav.querySelectorAll('a[href="javascript:void(0)"]');
+
+      toggles.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+
+          // Find the parent <li>
+          const li = link.closest('li');
+          if (!li) return;
+
+          // Find the corresponding submenu
+          const submenu = li.querySelector('.submenu');
+          if (!submenu) return;
+
+          // Close all other submenus first
+          const allSubmenus = nav.querySelectorAll('.submenu.open');
+          allSubmenus.forEach(menu => {
+            if (menu !== submenu) {
+              menu.classList.remove('open');
+            }
+          });
+
+          // Toggle current submenu
+          submenu.classList.toggle('open');
+        });
+      });
+    }
+  };
 }

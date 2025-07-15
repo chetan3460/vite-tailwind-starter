@@ -18,11 +18,11 @@ export default new (class App {
   }
 
   domReady = () => {
-    this.windowResize();
-    // this.windowScroll();
     this.bindEvents();
     new DynamicImports();
     injectVersion();
+    this.darkMode();
+    this.addHomeClass();
   };
 
   setDomMap = () => {
@@ -37,21 +37,11 @@ export default new (class App {
     this.pushDiv = this.wrapper.find('.push');
   };
 
-  bindEvents = () => {
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    document.documentElement.classList.toggle(
-      'dark',
-      localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches)
-    );
-    // Whenever the user explicitly chooses light mode
-    localStorage.theme = 'light';
-    // Whenever the user explicitly chooses dark mode
-    localStorage.theme = 'dark';
-    // Whenever the user explicitly chooses to respect the OS preference
-    localStorage.removeItem('theme');
+  bindEvents = () => {};
 
+  // Dark Mode Toggle
+  // This function toggles the dark mode by adding or removing the 'dark' class on the HTML tag
+  darkMode = () => {
     try {
       function changeTheme(e) {
         e.preventDefault();
@@ -71,121 +61,35 @@ export default new (class App {
 
       chk.addEventListener('change', changeTheme);
     } catch (err) {}
-
-    //Menu
-    /*********************/
-    /* Toggle Menu */
-    /*********************/
-
-    /*********************/
-    /*    Menu Active    */
-    /*********************/
-    function getClosest(elem, selector) {
-      // Element.matches() polyfill
-      if (!Element.prototype.matches) {
-        Element.prototype.matches =
-          Element.prototype.matchesSelector ||
-          Element.prototype.mozMatchesSelector ||
-          Element.prototype.msMatchesSelector ||
-          Element.prototype.oMatchesSelector ||
-          Element.prototype.webkitMatchesSelector ||
-          function (s) {
-            var matches = (
-                this.document || this.ownerDocument
-              ).querySelectorAll(s),
-              i = matches.length;
-            while (--i >= 0 && matches.item(i) !== this) {}
-            return i > -1;
-          };
-      }
-
-      // Get the closest matching element
-      for (; elem && elem !== document; elem = elem.parentNode) {
-        if (elem.matches(selector)) return elem;
-      }
-      return null;
-    }
-
-    // function activateMenu() {
-    //   var menuItems = document.getElementsByClassName('sub-menu-item');
-    //   if (menuItems) {
-    //     var matchingMenuItem = null;
-    //     for (var idx = 0; idx < menuItems.length; idx++) {
-    //       if (menuItems[idx].href === window.location.href) {
-    //         matchingMenuItem = menuItems[idx];
-    //       }
-    //     }
-
-    //     if (matchingMenuItem) {
-    //       matchingMenuItem.classList.add('active');
-
-    //       var immediateParent = getClosest(matchingMenuItem, 'li');
-
-    //       if (immediateParent) {
-    //         immediateParent.classList.add('active');
-    //       }
-
-    //       var parent = getClosest(immediateParent, '.child-menu-item');
-    //       if (parent) {
-    //         parent.classList.add('active');
-    //       }
-
-    //       var parent = getClosest(
-    //         parent || immediateParent,
-    //         '.parent-menu-item'
-    //       );
-
-    //       if (parent) {
-    //         parent.classList.add('active');
-
-    //         var parentMenuitem = parent.querySelector('.menu-item');
-    //         if (parentMenuitem) {
-    //           parentMenuitem.classList.add('active');
-    //         }
-
-    //         var parentOfParent = getClosest(parent, '.parent-parent-menu-item');
-    //         if (parentOfParent) {
-    //           parentOfParent.classList.add('active');
-    //         }
-    //       } else {
-    //         var parentOfParent = getClosest(
-    //           matchingMenuItem,
-    //           '.parent-parent-menu-item'
-    //         );
-    //         if (parentOfParent) {
-    //           parentOfParent.classList.add('active');
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-
-    /*********************/
-    /*  Clickable manu   */
-    /*********************/
-    if (document.getElementById('navigation')) {
-      var elements = document
-        .getElementById('navigation')
-        .getElementsByTagName('a');
-      for (var i = 0, len = elements.length; i < len; i++) {
-        elements[i].onclick = function (elem) {
-          if (elem.target.getAttribute('href') === 'javascript:void(0)') {
-            var submenu = elem.target.nextElementSibling.nextElementSibling;
-            submenu.classList.toggle('open');
-          }
-        };
-      }
-    }
   };
 
-  windowResize = () => {
-    this.screenWidth = this.window.width();
-    this.screenHeight = this.window.height();
+  // Add 'home' class to body for home page and specific classes for other pages
+  // This is useful for applying specific styles based on the page type
+  addHomeClass = () => {
+    const homePaths = ['/', '/index.html', '/vite-tailwind-starter/'];
+    const currentPath = window.location.pathname;
+    const isHomePage = homePaths.includes(currentPath);
+    if (isHomePage) {
+      document.body.classList.add('home');
+      // console.log("Added class 'home' to the body");
+    } else {
+      // console.log("Did not add class 'home'");
+    }
 
-    if (this.pushDiv.length) {
-      this.footerHeight = this.footer.outerHeight();
-      this.wrapper.css('margin-bottom', -this.footerHeight);
-      this.pushDiv.height(this.footerHeight);
+    const pathSegments = currentPath.split('/').filter(Boolean);
+    const fileName = pathSegments[pathSegments.length - 1] || ''; // Get the last segment
+    const fileWithoutExtension = fileName.split('.')[0]; // Remove the extension
+
+    // Split by hyphens to get the first word for other pages
+    const firstWord = fileWithoutExtension.split('-')[0];
+
+    // Add a class based on the first word, but not for the main page
+    if (firstWord && !isHomePage) {
+      const className = `${firstWord}-page`;
+      document.body.classList.add(className);
+      // console.log(`Added class '${className}' to the body`);
+    } else {
+      // console.log("No valid first word found to add class");
     }
   };
 })();

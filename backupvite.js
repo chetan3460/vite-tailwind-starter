@@ -6,7 +6,6 @@ import { globSync } from 'glob';
 import legacy from '@vitejs/plugin-legacy';
 import viteCompression from 'vite-plugin-compression';
 import pkg from './package.json';
-import history from 'connect-history-api-fallback';
 
 // Inject version like __APP_VERSION__
 const htmlVersionPlugin = () => {
@@ -183,7 +182,6 @@ export default defineConfig({
     htmlPartialPlugin(),
     htmlRelativePathPlugin(),
     htmlImageToWebpPlugin(),
-
     legacy({
       targets: ['defaults', 'not IE 11'],
       renderLegacyChunks: true,
@@ -199,7 +197,6 @@ export default defineConfig({
     minify: 'esbuild',
     modulePreload: false,
     target: 'es2015',
-    cssCodeSplit: true,
     rollupOptions: {
       input: getHtmlInputs(),
       output: {
@@ -208,25 +205,11 @@ export default defineConfig({
         //     ? `js/app-min-v${pkg.version}.js`
         //     : `js/[name]-min-v${pkg.version}.js`,
         entryFileNames: `js/[name]-min-v${pkg.version}.js`,
-        chunkFileNames: `js/[name]-min-v${pkg.version}.js`,
 
-        // assetFileNames: assetInfo => {
-        //   const name = assetInfo.name ?? '';
-        //   if (/\.css$/.test(name)) return `css/app-min-v${pkg.version}.css`;
-        //   if (/\.(woff2?|ttf|otf|eot)$/.test(name))
-        //     return 'fonts/[name][extname]';
-        //   if (/\.(png|jpe?g|gif|svg|webp|avif)$/.test(name))
-        //     return 'images/[name][extname]';
-        //   return 'assets/[name][extname]';
-        // },
+        chunkFileNames: `js/[name]-min-v${pkg.version}.js`,
         assetFileNames: assetInfo => {
           const name = assetInfo.name ?? '';
-          if (/\.css$/.test(name)) {
-            const baseName = name
-              .replace(/\.css$/, '')
-              .replace(/^src\/css\//, '');
-            return `css/${baseName}-min-v${pkg.version}.css`;
-          }
+          if (/\.css$/.test(name)) return `css/app-min-v${pkg.version}.css`;
           if (/\.(woff2?|ttf|otf|eot)$/.test(name))
             return 'fonts/[name][extname]';
           if (/\.(png|jpe?g|gif|svg|webp|avif)$/.test(name))
