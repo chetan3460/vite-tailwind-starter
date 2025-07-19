@@ -53,6 +53,7 @@
     "@popperjs/core": "^2.11.8",
     "@tailwindcss/vite": "^4.1.11",
     "bootstrap": "^5.3.3",
+    "feather-icons": "^4.29.2",
     "gsap": "^3.12.5",
     "jquery": "^3.7.1",
     "swiper": "^11.1.12"
