@@ -3,11 +3,11 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 import fs from 'fs/promises';
 import { globSync } from 'glob';
+import legacy from '@vitejs/plugin-legacy';
 import viteCompression from 'vite-plugin-compression';
 import pkg from './package.json';
 import history from 'connect-history-api-fallback';
 import { visualizer } from 'rollup-plugin-visualizer';
-import crypto from 'crypto-browserify';
 
 // Inject version like __APP_VERSION__
 const htmlVersionPlugin = () => {
@@ -19,37 +19,6 @@ const htmlVersionPlugin = () => {
     },
   };
 };
-
-// const htmlScriptAndStyleInjectPlugin = () => {
-//   return {
-//     name: 'html-script-style-inject',
-//     transformIndexHtml(html, ctx) {
-//       const isBuild = ctx?.server === undefined;
-//       const version = pkg.version;
-
-//       let relativePath = '.';
-//       if (isBuild && ctx?.filename) {
-//         const htmlDir = path.posix.dirname(ctx.filename.replace(/\\/g, '/'));
-//         relativePath = path.posix.relative(htmlDir, '.');
-//         if (!relativePath) relativePath = '.';
-//       }
-
-//       const styleTag = isBuild
-//         ? `<link rel="stylesheet" href="${relativePath}/css/app-min-v${version}.css" />`
-//         : `<link rel="stylesheet" href="/src/css/app.css" />`;
-
-//       const scriptTag = isBuild
-//         ? `<script type="module" src="${relativePath}/js/app-min-v${version}.js"></script>`
-//         : `<script type="module" src="/src/js/app.js"></script>`;
-
-//       // ❌ Don’t manually inject the legacy script — let `@vitejs/plugin-legacy` do it
-
-//       return html
-//         .replace('<!-- __STYLE_TAG__ -->', styleTag)
-//         .replace('<!-- __SCRIPT_TAG__ -->', scriptTag);
-//     },
-//   };
-// };
 
 const htmlScriptAndStyleInjectPlugin = () => {
   return {
@@ -72,6 +41,8 @@ const htmlScriptAndStyleInjectPlugin = () => {
       const scriptTag = isBuild
         ? `<script type="module" src="${relativePath}/js/app-min-v${version}.js"></script>`
         : `<script type="module" src="/src/js/app.js"></script>`;
+
+      // ❌ Don’t manually inject the legacy script — let `@vitejs/plugin-legacy` do it
 
       return html
         .replace('<!-- __STYLE_TAG__ -->', styleTag)
@@ -185,11 +156,11 @@ export default defineConfig({
     htmlRelativePathPlugin(),
     htmlImageToWebpPlugin(),
     visualizer({ open: false }),
-    // legacy({
-    //   targets: ['defaults', 'not IE 11'],
-    //   renderLegacyChunks: true,
-    //   modernPolyfills: true,
-    // }),
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+      renderLegacyChunks: true,
+      modernPolyfills: true,
+    }),
   ],
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
@@ -234,7 +205,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      crypto: 'crypto-browserify',
     },
   },
 });
