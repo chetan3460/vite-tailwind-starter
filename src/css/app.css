@@ -12,14 +12,12 @@
 @import './custom/pages/_helper.css';
 @import './custom/pages/_hero.css';
 @import './custom/pages/_countdown.css';
-@import './custom/pages/_portfolio.css';
 @import './custom/pages/_contact.css';
 
 /* // Plugins */
 @import './custom/plugins/_swiper-slider.css';
-@import './custom/plugins/_testi.css';
-@import './custom/plugins/_choices.css';
 @import './custom/plugins/_datepicker.css';
+@import '../../node_modules/swiper/swiper-bundle.min.css';
 
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));

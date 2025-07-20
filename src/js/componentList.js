@@ -1,29 +1,27 @@
-// src/componentList.js
-import $ from 'jquery';
-
 export const componentList = [
   {
-    element: $('header'),
+    selector: 'header',
     className: 'Header',
     mobile: true,
     config: {
-      header: $('header'),
-      htmlBody: $('body'),
+      header: document.querySelector('header'),
+      htmlBody: document.body,
     },
   },
   {
-    element: $('.banner-area'),
+    selector: '.banner-area',
     className: 'BannerSlider',
     mobile: true,
   },
+
   {
-    element: $('.upgrade--section'),
-    className: 'UpgradeSlider',
+    selector: '.test-block',
+    className: 'TestBlock',
     mobile: true,
   },
   {
-    element: $('.test-block'),
-    className: 'TestBlock',
+    selector: '.slider-block',
+    className: 'SliderBlock',
     mobile: true,
   },
 ];

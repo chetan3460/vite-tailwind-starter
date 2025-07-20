@@ -42,22 +42,22 @@ export const max767 = window.matchMedia('(max-width: 767px)');
 export const max375 = window.matchMedia('(max-width: 375px)');
 
 // Version Injector
-export const injectVersion = async () => {
-  try {
-    const res = await fetch('/version.json');
-    const { version, date } = await res.json();
+// export const injectVersion = async () => {
+//   try {
+//     const res = await fetch('/version.json');
+//     const { version, date } = await res.json();
 
-    const el = document.getElementById('version-text');
-    if (el) {
-      const formatted = new Date(date).toLocaleDateString('en-IN', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-      });
+//     const el = document.getElementById('version-text');
+//     if (el) {
+//       const formatted = new Date(date).toLocaleDateString('en-IN', {
+//         day: '2-digit',
+//         month: 'short',
+//         year: 'numeric',
+//       });
 
-      el.textContent = `v${version} – Last updated: ${formatted}`;
-    }
-  } catch (e) {
-    console.warn('Failed to load version.json');
-  }
-};
+//       el.textContent = `v${version} – Last updated: ${formatted}`;
+//     }
+//   } catch (e) {
+//     console.warn('Failed to load version.json');
+//   }
+// };

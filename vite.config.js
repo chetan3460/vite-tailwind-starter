@@ -7,6 +7,7 @@ import legacy from '@vitejs/plugin-legacy';
 import viteCompression from 'vite-plugin-compression';
 import pkg from './package.json';
 import history from 'connect-history-api-fallback';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // Inject version like __APP_VERSION__
 const htmlVersionPlugin = () => {
@@ -18,40 +19,6 @@ const htmlVersionPlugin = () => {
     },
   };
 };
-
-// Inject <script> and <link> with correct relative paths
-// const htmlScriptAndStyleInjectPlugin = () => {
-//   return {
-//     name: 'html-script-style-inject',
-//     transformIndexHtml(html, ctx) {
-//       const isBuild = ctx?.server === undefined;
-//       const version = pkg.version;
-
-//       // Calculate relative path
-//       let relativePath = '.';
-//       if (isBuild && ctx?.filename) {
-//         const htmlDir = path.posix.dirname(ctx.filename.replace(/\\/g, '/'));
-//         relativePath = path.posix.relative(htmlDir, '.');
-//         if (!relativePath) relativePath = '.';
-//       }
-
-//       const styleTag = isBuild
-//         ? `<link rel="stylesheet" href="${relativePath}/css/app-min-v${version}.css" />`
-//         : '';
-
-//       const scriptTags = isBuild
-//         ? `
-//   <script type="module" src="${relativePath}/js/app-min-v${version}.js"></script>
-//   <script nomodule src="${relativePath}/js/app-legacy-min-v${version}.js"></script>
-//         `
-//         : `<script type="module" src="/src/js/app.js"></script>`;
-
-//       return html
-//         .replace('<!-- __STYLE_TAG__ -->', styleTag)
-//         .replace('<!-- __SCRIPT_TAG__ -->', scriptTags);
-//     },
-//   };
-// };
 
 const htmlScriptAndStyleInjectPlugin = () => {
   return {
@@ -164,11 +131,23 @@ function getHtmlInputs() {
 }
 
 const htmlImageToWebpPlugin = () => ({
-  name: 'html-img-to-webp-only',
+  name: 'html-and-tailwind-to-webp',
   transformIndexHtml(html, ctx) {
     if (ctx?.server) return html;
 
-    return html.replace(/(<img[^>]+src="[^"]+)\.(png|jpe?g)"/gi, '$1.webp"');
+    // 1. <img src="..."> → .webp
+    html = html.replace(
+      /(<img[^>]+src=["'])([^"']+?)\.(png|jpe?g)(["'])/gi,
+      '$1$2.webp$4'
+    );
+
+    // 2. Tailwind class: bg-[url('/images/xxx.jpg')] → .webp
+    // html = html.replace(
+    //   /(bg-\[url\(['"]?)([^'"\]]+?)\.(png|jpe?g)(['"]?\)\])/gi,
+    //   '$1$2.webp$4'
+    // );
+
+    return html;
   },
 });
 
@@ -183,7 +162,7 @@ export default defineConfig({
     htmlPartialPlugin(),
     htmlRelativePathPlugin(),
     htmlImageToWebpPlugin(),
-
+    visualizer({ open: false }),
     legacy({
       targets: ['defaults', 'not IE 11'],
       renderLegacyChunks: true,
@@ -203,22 +182,9 @@ export default defineConfig({
     rollupOptions: {
       input: getHtmlInputs(),
       output: {
-        // entryFileNames: chunkInfo =>
-        //   chunkInfo.name === 'app'
-        //     ? `js/app-min-v${pkg.version}.js`
-        //     : `js/[name]-min-v${pkg.version}.js`,
         entryFileNames: `js/[name]-min-v${pkg.version}.js`,
         chunkFileNames: `js/[name]-min-v${pkg.version}.js`,
 
-        // assetFileNames: assetInfo => {
-        //   const name = assetInfo.name ?? '';
-        //   if (/\.css$/.test(name)) return `css/app-min-v${pkg.version}.css`;
-        //   if (/\.(woff2?|ttf|otf|eot)$/.test(name))
-        //     return 'fonts/[name][extname]';
-        //   if (/\.(png|jpe?g|gif|svg|webp|avif)$/.test(name))
-        //     return 'images/[name][extname]';
-        //   return 'assets/[name][extname]';
-        // },
         assetFileNames: assetInfo => {
           const name = assetInfo.name ?? '';
           if (/\.css$/.test(name)) {
@@ -233,6 +199,13 @@ export default defineConfig({
             return 'images/[name][extname]';
           return 'assets/[name][extname]';
         },
+        // manualChunks(id) {
+        //   if (id.includes('node_modules')) {
+        //     if (id.includes('@iconscout/unicons')) return 'unicons';
+        //     if (id.includes('jquery')) return 'jquery';
+        //     return 'vendor';
+        //   }
+        // },
       },
     },
   },

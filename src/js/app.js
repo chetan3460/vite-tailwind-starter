@@ -1,14 +1,9 @@
 // src/js/app.js
 import './helpers/jquery';
-import { injectVersion } from './utils';
-
-import '@iconscout/unicons/css/line.css'; // or solid.css, thinline.css
+import '@iconscout/unicons/css/line.css';
 import '../css/app.css';
 import feather from 'feather-icons';
 import DynamicImports from './components/DynamicImports';
-
-console.log('Vite is working!');
-console.log('App JS loaded');
 
 export default new (class App {
   constructor() {
@@ -21,7 +16,7 @@ export default new (class App {
   domReady = () => {
     this.bindEvents();
     new DynamicImports();
-    injectVersion();
+    // injectVersion();
     this.darkMode();
     this.addHomeClass();
     this.accordion();

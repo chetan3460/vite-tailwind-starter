@@ -1,43 +1,262 @@
-
 /*****************/
 /*  Swiper Slider     */
 /*****************/
-.swiper-slider-hero {
-    .swiper-container {
-        .swiper-button-prev,
-        .swiper-button-next {
-            &:before {
-                font-family: "Material Design Icons";
-            }
-        }
-        .swiper-button-prev {
-            &:before {
-                content: "\f0141";
-            }
-        }
 
-        .swiper-button-next {
-            &:before {
-                content: "\f0142";
-            }
-        }
-    }
-    .swiper-pagination-bullet {
-        @apply text-gray-50 bg-transparent;
-    }
-    .swiper-pagination-bullet-active {
-        @apply text-white;
-    }
-    .swiper-container-horizontal > .swiper-pagination-bullets,
-    .swiper-pagination-custom,
-    .swiper-pagination-fraction {
-        @apply bottom-[45px];
-    }
-    .swiper-container-horizontal {
-        > .swiper-pagination-bullets {
-            .swiper-pagination-bullet {
-                @apply my-0 mx-[13px];
-            }
-        }
-    }
+.swiper-controls {
+  @apply pointer-events-none !absolute top-0 left-0 h-full w-full;
+}
+.swiper-controls .swiper-navigation {
+  pointer-events: all;
+}
+.swiper-controls .swiper-navigation .swiper-button {
+  @apply h-[2.2rem] w-[2.2rem] rounded-[100%] border-0 bg-[rgba(255,255,255,.7)] leading-[inherit] text-[#343f52] shadow-[0_0.25rem_0.75rem_rgba(30,34,40,0.02)] transition-all duration-[0.2s] ease-in-out after:text-[1.2rem] motion-reduce:transition-none;
+  text-shadow: none;
+}
+.swiper-controls .swiper-navigation .swiper-button:hover {
+  @apply bg-[rgba(255,255,255,.9)];
+}
+.swiper-controls .swiper-navigation .swiper-button:focus {
+  outline: 0;
+}
+/* .swiper-controls .swiper-navigation .swiper-button:after {
+    @apply font-Unicons;
+  } */
+.swiper-controls .swiper-navigation .swiper-button.swiper-button-prev {
+  @apply left-4 after:content-["\e949"];
+}
+.swiper-controls .swiper-navigation .swiper-button.swiper-button-next {
+  @apply right-4 after:content-["\e94c"];
+}
+.swiper-controls .swiper-navigation .swiper-button.swiper-button-disabled {
+  @apply bg-[rgba(255,255,255,.7)];
+}
+.swiper-controls .swiper-pagination {
+  @apply !absolute bottom-[-2.8rem];
+  pointer-events: all;
+}
+.swiper-controls .swiper-pagination .swiper-pagination-bullet {
+  @apply rounded-[3px] bg-indigo-600/30 duration-500 border-0 m-1 p-[5px] opacity-100;
+}
+.swiper-controls .swiper-pagination .swiper-pagination-bullet:focus {
+  outline: 0;
+}
+.swiper-controls
+  .swiper-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply bg-indigo-600 rotate-[45deg];
+}
+.swiper-container.clients .swiper {
+  @apply flex items-center;
+}
+.swiper-container.nav-color .swiper-button {
+  @apply !bg-[rgba(63,120,224,.9)] text-white;
+}
+.swiper-container.nav-color .swiper-button.swiper-button-disabled,
+.swiper-container.nav-color
+  .swiper-slide
+  figure
+  .item-link.swiper-button-disabled {
+  @apply !bg-[rgba(63,120,224,.7)];
+}
+.swiper-container.nav-color .swiper-button:hover {
+  @apply !bg-[#3f78e0];
+}
+.swiper-container.nav-dark .swiper-button,
+.swiper-container.nav-dark .swiper-slide figure .item-link {
+  @apply !bg-[rgba(0,0,0,.3)] text-white;
+}
+.swiper-container.nav-dark .swiper-button.swiper-button-disabled,
+.swiper-container.nav-dark
+  .swiper-slide
+  figure
+  .item-link.swiper-button-disabled {
+  @apply !bg-[rgba(0,0,0,.1)];
+}
+.swiper-container.nav-dark .swiper-button:hover,
+.swiper-container.nav-dark .swiper-slide figure .item-link:hover {
+  @apply !bg-[rgba(0,0,0,.5)];
+}
+.swiper-container.nav-bottom .swiper-navigation {
+  @apply absolute bottom-[-3.2rem] left-0 flex w-full transform-none flex-row justify-center;
+}
+.swiper-container.nav-bottom .swiper-navigation .swiper-button {
+  @apply relative inset-x-auto top-auto bottom-0 mx-[0.2rem] my-0;
+}
+.swiper-container.nav-bottom .swiper-navigation + .swiper-pagination {
+  @apply bottom-[-5.2rem];
+}
+.swiper-container.nav-bottom.nav-far .swiper-navigation {
+  @apply bottom-[-4.1rem];
+}
+.swiper-container.nav-bottom.nav-start .swiper-navigation {
+  @apply justify-start text-left;
+}
+.swiper-container.nav-bottom.nav-start .swiper-navigation .swiper-button {
+  @apply my-0 mr-[0.4rem] ml-0;
+}
+.swiper-container.dots-over .swiper-pagination {
+  @apply bottom-[0.6rem];
+}
+.swiper-container.dots-over .swiper-pagination .swiper-pagination-bullet {
+  @apply bg-white opacity-100 shadow-[0_0.25rem_0.75rem_rgba(30,34,40,0.02)];
+}
+.swiper-container.dots-over
+  .swiper-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply border-white;
+  background: 0 0;
+}
+.swiper-container.dots-start .swiper-pagination {
+  @apply justify-start text-left;
+}
+.swiper-container.dots-light .swiper-pagination .swiper-pagination-bullet {
+  @apply bg-white opacity-100 p-3;
+}
+.swiper-container.dots-light
+  .swiper-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply border-white bg-inherit;
+}
+.swiper-container.dots-dark .swiper-pagination .swiper-pagination-bullet {
+  @apply bg-[rgba(0,0,0,.3)] opacity-100;
+}
+.swiper-container.dots-dark
+  .swiper-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply border-[rgba(0,0,0,0.3)] bg-inherit;
+}
+.swiper-container.dots-light.dots-light-75
+  .swiper-pagination
+  .swiper-pagination-bullet {
+  @apply opacity-75;
+}
+.swiper-container.dots-closer .swiper-pagination {
+  @apply bottom-[-2rem];
+}
+.swiper-slide.bg-overlay:before {
+  @apply absolute top-0 left-0 z-[1] block h-full w-full bg-[rgba(30,34,40,.5)] content-[""];
+}
+.swiper-slide.rounded.bg-overlay:before {
+  @apply rounded-[0.4rem];
+}
+.swiper-slide.bg-overlay-300:before {
+  @apply bg-[rgba(30,34,40,.3)];
+}
+.swiper-slide.bg-overlay-400:before {
+  @apply bg-[rgba(30,34,40,.4)];
+}
+.swiper-slide.bg-overlay .caption-wrapper > *,
+.swiper-slide.bg-overlay [class*='container'] > * {
+  @apply relative z-[3];
+}
+.swiper-slide .caption-wrapper {
+  @apply absolute top-0 left-0 flex h-full w-full;
+}
+.swiper-slide .caption-wrapper .caption {
+  @apply flex;
+}
+.swiper-hero,
+.swiper-hero .swiper-slide {
+  @apply h-[750px];
+}
+.swiper-hero .swiper-slide {
+  @apply bg-cover bg-[center_center];
+}
+.swiper-fullscreen {
+  @apply h-screen;
+}
+.swiper-fullscreen .swiper:not(.swiper-thumbs) .swiper-slide {
+  @apply h-screen bg-cover bg-[center_center];
+}
+.swiper-fullscreen .swiper-thumbs {
+  @apply absolute bottom-4 left-2/4 z-[9999] -translate-x-2/4;
+}
+.swiper-fullscreen .swiper-thumbs .swiper-slide {
+  @apply !h-10 !w-10 cursor-pointer after:absolute after:top-0 after:left-0 after:z-[2] after:box-border after:block after:h-full after:w-full after:rounded-[100%] after:border-2 after:border-solid after:border-transparent after:transition-all after:duration-[150ms] after:ease-in-out after:content-[""];
+}
+.swiper-fullscreen .swiper-thumbs .swiper-slide img {
+  @apply h-10 w-10 rounded-[100%];
+}
+.swiper-fullscreen
+  .swiper-thumbs
+  .swiper-slide.swiper-slide-thumb-active:after {
+  @apply border-[rgba(255,255,255,0.6)];
+}
+.swiper-container .swiper-slide [class*='animate__'] {
+  @apply invisible;
+  animation-name: none;
+}
+.swiper-container .swiper-slide.swiper-slide-active [class*='animate__'] {
+  @apply visible;
+}
+.swiper-container
+  .swiper-slide.swiper-slide-active
+  [class*='animate__'].animate__fadeInUp {
+  animation-name: fadeInUp;
+}
+.swiper-container
+  .swiper-slide.swiper-slide-active
+  [class*='animate__'].animate__fadeInDown {
+  animation-name: fadeInDown;
+}
+.swiper-container
+  .swiper-slide.swiper-slide-active
+  [class*='animate__'].animate__fadeInTopRight {
+  animation-name: fadeInTopRight;
+}
+.swiper-container
+  .swiper-slide.swiper-slide-active
+  [class*='animate__'].animate__slideInUp {
+  animation-name: slideInUp;
+}
+.swiper-container
+  .swiper-slide.swiper-slide-active
+  [class*='animate__'].animate__slideInDown {
+  animation-name: slideInDown;
+}
+.swiper-container
+  .swiper-slide.swiper-slide-active
+  [class*='animate__'].animate__slideInLeft {
+  animation-name: slideInLeft;
+}
+.swiper-container
+  .swiper-slide.swiper-slide-active
+  [class*='animate__'].animate__slideInRight {
+  animation-name: slideInRight;
+}
+.swiper-container
+  .swiper-slide.swiper-slide-active
+  [class*='animate__'].animate__zoomIn {
+  animation-name: zoomIn;
+}
+
+.swiper-thumbs-container:not(.swiper-fullscreen) .swiper-main {
+  @apply relative;
+}
+.swiper-thumbs-container:not(.swiper-fullscreen) .swiper:not(.swiper-thumbs) {
+  @apply mb-2;
+}
+.swiper-thumbs-container:not(.swiper-fullscreen):not(.swiper-fullscreen)
+  .swiper-thumbs
+  .swiper-slide {
+  @apply cursor-pointer opacity-70;
+}
+.swiper-thumbs-container:not(.swiper-fullscreen):not(.swiper-fullscreen)
+  .swiper-thumbs
+  .swiper-slide.swiper-slide-thumb-active {
+  @apply opacity-100;
+}
+.swiper-static {
+  @apply pointer-events-none absolute top-0 left-0 z-[1000] h-full w-full;
+}
+.swiper-wrapper.ticker {
+  @apply ease-linear;
+}
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .swiper-auto .swiper-slide {
+    @apply !w-[600px];
+  }
+  .swiper-auto.swiper-auto-xs .swiper-slide {
+    @apply !w-[400px];
+  }
 }
