@@ -2,7 +2,7 @@
 
 A modern frontend starter template powered by **Vite** and **Tailwind CSS v4**, designed for lightning-fast development, optimized builds, and dynamic output (HTML/PHP). Ideal for agency projects, client handoffs, and scalable sites.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000?style=for-the-badge&logo=vercel&logoColor=white)](https://vite-tailwind-starter.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-000?style=for-the-badge&logo=vercel&logoColor=white)](https://vite-tailwind-starter-ebon.vercel.app)
 
 ---
 
