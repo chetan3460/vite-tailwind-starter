@@ -163,11 +163,11 @@ export default defineConfig({
     htmlRelativePathPlugin(),
     htmlImageToWebpPlugin(),
     visualizer({ open: false }),
-    legacy({
-      targets: ['defaults', 'not IE 11'],
-      renderLegacyChunks: true,
-      modernPolyfills: true,
-    }),
+    // legacy({
+    //   targets: ['defaults', 'not IE 11'],
+    //   renderLegacyChunks: true,
+    //   modernPolyfills: true,
+    // }),
   ],
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
