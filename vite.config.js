@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 import fs from 'fs/promises';
 import { globSync } from 'glob';
-import legacy from '@vitejs/plugin-legacy';
+// import legacy from '@vitejs/plugin-legacy';
 import viteCompression from 'vite-plugin-compression';
 import pkg from './package.json';
 import history from 'connect-history-api-fallback';
@@ -19,6 +19,37 @@ const htmlVersionPlugin = () => {
     },
   };
 };
+
+// const htmlScriptAndStyleInjectPlugin = () => {
+//   return {
+//     name: 'html-script-style-inject',
+//     transformIndexHtml(html, ctx) {
+//       const isBuild = ctx?.server === undefined;
+//       const version = pkg.version;
+
+//       let relativePath = '.';
+//       if (isBuild && ctx?.filename) {
+//         const htmlDir = path.posix.dirname(ctx.filename.replace(/\\/g, '/'));
+//         relativePath = path.posix.relative(htmlDir, '.');
+//         if (!relativePath) relativePath = '.';
+//       }
+
+//       const styleTag = isBuild
+//         ? `<link rel="stylesheet" href="${relativePath}/css/app-min-v${version}.css" />`
+//         : `<link rel="stylesheet" href="/src/css/app.css" />`;
+
+//       const scriptTag = isBuild
+//         ? `<script type="module" src="${relativePath}/js/app-min-v${version}.js"></script>`
+//         : `<script type="module" src="/src/js/app.js"></script>`;
+
+//       // ❌ Don’t manually inject the legacy script — let `@vitejs/plugin-legacy` do it
+
+//       return html
+//         .replace('<!-- __STYLE_TAG__ -->', styleTag)
+//         .replace('<!-- __SCRIPT_TAG__ -->', scriptTag);
+//     },
+//   };
+// };
 
 const htmlScriptAndStyleInjectPlugin = () => {
   return {
@@ -41,8 +72,6 @@ const htmlScriptAndStyleInjectPlugin = () => {
       const scriptTag = isBuild
         ? `<script type="module" src="${relativePath}/js/app-min-v${version}.js"></script>`
         : `<script type="module" src="/src/js/app.js"></script>`;
-
-      // ❌ Don’t manually inject the legacy script — let `@vitejs/plugin-legacy` do it
 
       return html
         .replace('<!-- __STYLE_TAG__ -->', styleTag)
@@ -140,13 +169,6 @@ const htmlImageToWebpPlugin = () => ({
       /(<img[^>]+src=["'])([^"']+?)\.(png|jpe?g)(["'])/gi,
       '$1$2.webp$4'
     );
-
-    // 2. Tailwind class: bg-[url('/images/xxx.jpg')] → .webp
-    // html = html.replace(
-    //   /(bg-\[url\(['"]?)([^'"\]]+?)\.(png|jpe?g)(['"]?\)\])/gi,
-    //   '$1$2.webp$4'
-    // );
-
     return html;
   },
 });
