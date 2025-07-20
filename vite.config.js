@@ -3,7 +3,6 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 import fs from 'fs/promises';
 import { globSync } from 'glob';
-// import legacy from '@vitejs/plugin-legacy';
 import viteCompression from 'vite-plugin-compression';
 import pkg from './package.json';
 import history from 'connect-history-api-fallback';
