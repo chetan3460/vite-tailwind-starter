@@ -1,4 +1,4 @@
-name: Copy dist to gh-pages branch
+name: Push dist to gh-pages branch
 
 on:
   push:
@@ -6,17 +6,17 @@ on:
       - main
 
 jobs:
-  copy-dist:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
 
       - name: Install dependencies
         run: npm ci
@@ -24,23 +24,24 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Push dist to gh-pages branch (not GitHub Pages)
+      - name: Push dist/ to gh-pages branch
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git fetch origin gh-pages || true
-
-          # ✅ Move dist files before switching branch
+          # Save the current dist folder before switching branches
           mkdir temp-dist
           cp -r dist/* temp-dist/
 
+          # Create orphan branch to avoid history issues
           git switch --orphan temp-gh-pages
-          git rm -rf .
+          git reset --hard
 
+          # Replace with dist content
           cp -r temp-dist/* .
           rm -rf temp-dist
 
+          # Commit and push to gh-pages
           git add .
           git commit -m "Deploy dist folder to gh-pages"
           git push --force origin temp-gh-pages:gh-pages
