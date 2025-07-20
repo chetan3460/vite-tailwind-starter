@@ -7,6 +7,7 @@ import viteCompression from 'vite-plugin-compression';
 import pkg from './package.json';
 import history from 'connect-history-api-fallback';
 import { visualizer } from 'rollup-plugin-visualizer';
+import crypto from 'crypto-browserify';
 
 // Inject version like __APP_VERSION__
 const htmlVersionPlugin = () => {
