@@ -30,9 +30,17 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
           git fetch origin gh-pages || true
+
+          # ✅ Move dist files before switching branch
+          mkdir temp-dist
+          cp -r dist/* temp-dist/
+
           git switch --orphan temp-gh-pages
           git rm -rf .
-          cp -r dist/* .
+
+          cp -r temp-dist/* .
+          rm -rf temp-dist
+
           git add .
           git commit -m "Deploy dist folder to gh-pages"
           git push --force origin temp-gh-pages:gh-pages
