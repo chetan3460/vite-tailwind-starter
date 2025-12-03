@@ -192,13 +192,14 @@ export default defineConfig({
             return 'images/[name][extname]';
           return 'assets/[name][extname]';
         },
-        // manualChunks(id) {
-        //   if (id.includes('node_modules')) {
-        //     if (id.includes('@iconscout/unicons')) return 'unicons';
-        //     if (id.includes('jquery')) return 'jquery';
-        //     return 'vendor';
-        //   }
-        // },
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('@iconscout/unicons')) return 'unicons';
+            if (id.includes('swiper')) return 'swiper';
+            if (id.includes('gsap')) return 'gsap';
+            return 'vendor';
+          }
+        },
       },
     },
   },

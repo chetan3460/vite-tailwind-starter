@@ -1,98 +1,152 @@
-// src/js/app.js
-import './helpers/jquery';
+// src/js/app.js - Modernized without jQuery
 import '@iconscout/unicons/css/line.css';
 import '../css/app.css';
 import feather from 'feather-icons';
 import DynamicImports from './components/DynamicImports';
+import logger from './utils/logger.js';
+import './utils/errorHandler.js'; // Initialize global error handler
+import lazyLoader from './utils/lazyLoad.js';
 
 export default new (class App {
   constructor() {
     this.setDomMap();
-    $(() => {
+
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.domReady());
+    } else {
       this.domReady();
-    });
+    }
   }
 
   domReady = () => {
-    this.bindEvents();
-    new DynamicImports();
-    // injectVersion();
-    this.darkMode();
-    this.addHomeClass();
-    this.accordion();
+    logger.info('App initializing...');
+
+    try {
+      this.bindEvents();
+      new DynamicImports();
+      this.darkMode();
+      this.addHomeClass();
+      this.accordion();
+      this.initLazyLoading();
+
+      logger.info('App initialized successfully');
+    } catch (error) {
+      logger.error('Error during app initialization:', error);
+    }
   };
 
   setDomMap = () => {
-    this.window = $(window);
-    this.htmlNbody = $('body, html');
-    this.html = $('html');
-    this.htmlBody = $('body');
-    this.header = $('header');
-    this.gotoTop = $('#gotoTop');
-    this.wrapper = $('.wrapper');
-    this.footer = $('footer');
-    this.pushDiv = this.wrapper.find('.push');
+    this.window = window;
+    this.html = document.documentElement;
+    this.htmlBody = document.body;
+    this.header = document.querySelector('header');
+    this.gotoTop = document.getElementById('gotoTop');
+    this.wrapper = document.querySelector('.wrapper');
+    this.footer = document.querySelector('footer');
+
+    if (this.wrapper) {
+      this.pushDiv = this.wrapper.querySelector('.push');
+    }
   };
 
   bindEvents = () => {
     feather.replace();
+
+    // Scroll to top button
+    if (this.gotoTop) {
+      window.addEventListener('scroll', this.handleScroll);
+      this.gotoTop.addEventListener('click', e => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   };
 
-  // Dark Mode Toggle
-  // This function toggles the dark mode by adding or removing the 'dark' class on the HTML tag
+  handleScroll = () => {
+    if (this.gotoTop) {
+      if (window.pageYOffset > 100) {
+        this.gotoTop.classList.add('visible');
+      } else {
+        this.gotoTop.classList.remove('visible');
+      }
+    }
+  };
+
+  /**
+   * Dark Mode Toggle
+   * Toggles between light and dark modes
+   */
   darkMode = () => {
     try {
-      function changeTheme(e) {
-        e.preventDefault();
-        const htmlTag = document.getElementsByTagName('html')[0];
-
-        if (htmlTag.className.includes('dark')) {
-          htmlTag.className = 'light';
-        } else {
-          htmlTag.className = 'dark';
+      const changeTheme = e => {
+        if (e) {
+          e.preventDefault();
         }
+
+        const htmlTag = document.documentElement;
+        const isDark = htmlTag.className.includes('dark');
+
+        htmlTag.className = isDark ? 'light' : 'dark';
+
+        // Save preference to localStorage
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+
+        logger.debug(`Theme changed to: ${isDark ? 'light' : 'dark'}`);
+      };
+
+      // Load saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.className = savedTheme;
       }
 
+      // Theme switcher button
       const switcher = document.getElementById('theme-mode');
-      switcher?.addEventListener('click', changeTheme);
+      if (switcher) {
+        switcher.addEventListener('click', changeTheme);
+      }
 
+      // Theme toggle checkbox
       const chk = document.getElementById('chk');
-
-      chk.addEventListener('change', changeTheme);
-    } catch (err) {}
+      if (chk) {
+        chk.addEventListener('change', changeTheme);
+      }
+    } catch (err) {
+      logger.error('Error setting up dark mode:', err);
+    }
   };
 
-  // Add 'home' class to body for home page and specific classes for other pages
-  // This is useful for applying specific styles based on the page type
+  /**
+   * Add page-specific classes to body
+   * Useful for applying specific styles based on the page type
+   */
   addHomeClass = () => {
     const homePaths = ['/', '/index.html', '/vite-tailwind-starter/'];
     const currentPath = window.location.pathname;
     const isHomePage = homePaths.includes(currentPath);
+
     if (isHomePage) {
       document.body.classList.add('home');
-      // console.log("Added class 'home' to the body");
-    } else {
-      // console.log("Did not add class 'home'");
+      logger.debug("Added class 'home' to the body");
     }
 
     const pathSegments = currentPath.split('/').filter(Boolean);
-    const fileName = pathSegments[pathSegments.length - 1] || ''; // Get the last segment
-    const fileWithoutExtension = fileName.split('.')[0]; // Remove the extension
-
-    // Split by hyphens to get the first word for other pages
+    const fileName = pathSegments[pathSegments.length - 1] || '';
+    const fileWithoutExtension = fileName.split('.')[0];
     const firstWord = fileWithoutExtension.split('-')[0];
 
-    // Add a class based on the first word, but not for the main page
     if (firstWord && !isHomePage) {
       const className = `${firstWord}-page`;
       document.body.classList.add(className);
-      // console.log(`Added class '${className}' to the body`);
-    } else {
-      // console.log("No valid first word found to add class");
+      logger.debug(`Added class '${className}' to the body`);
     }
   };
 
-  // Accordion functionality
+  /**
+   * Accordion functionality
+   * Implements accessible accordion component
+   */
   accordion = () => {
     try {
       const Default = {
@@ -113,8 +167,7 @@ export default new (class App {
 
         _init() {
           if (this._items.length) {
-            // show accordion item based on click
-            this._items.map(item => {
+            this._items.forEach(item => {
               if (item.active) {
                 this.open(item.id);
               }
@@ -127,52 +180,28 @@ export default new (class App {
         }
 
         getItem(id) {
-          return this._items.filter(item => item.id === id)[0];
+          return this._items.find(item => item.id === id);
         }
 
         open(id) {
           const item = this.getItem(id);
 
-          // don't hide other accordions if always open
           if (!this._options.alwaysOpen) {
-            this._items.map(i => {
+            this._items.forEach(i => {
               if (i !== item) {
-                i.triggerEl.classList.remove(
-                  ...this._options.activeClasses.split(' ')
-                );
-                i.triggerEl.classList.add(
-                  ...this._options.inactiveClasses.split(' ')
-                );
-                i.targetEl.classList.add('hidden');
-                i.triggerEl.setAttribute('aria-expanded', false);
-                i.active = false;
-
-                // rotate icon if set
-                if (i.iconEl) {
-                  i.iconEl.classList.remove('rotate-180');
-                }
+                this._deactivateItem(i);
               }
             });
           }
 
-          // show active item
-          item.triggerEl.classList.add(
-            ...this._options.activeClasses.split(' ')
-          );
-          item.triggerEl.classList.remove(
-            ...this._options.inactiveClasses.split(' ')
-          );
-          item.triggerEl.setAttribute('aria-expanded', true);
-          item.targetEl.classList.remove('hidden');
-          item.active = true;
-
-          // rotate icon if set
-          if (item.iconEl) {
-            item.iconEl.classList.add('rotate-180');
-          }
-
-          // callback function
+          this._activateItem(item);
           this._options.onOpen(this, item);
+        }
+
+        close(id) {
+          const item = this.getItem(id);
+          this._deactivateItem(item);
+          this._options.onClose(this, item);
         }
 
         toggle(id) {
@@ -184,13 +213,26 @@ export default new (class App {
             this.open(id);
           }
 
-          // callback function
           this._options.onToggle(this, item);
         }
 
-        close(id) {
-          const item = this.getItem(id);
+        _activateItem(item) {
+          item.triggerEl.classList.add(
+            ...this._options.activeClasses.split(' ')
+          );
+          item.triggerEl.classList.remove(
+            ...this._options.inactiveClasses.split(' ')
+          );
+          item.triggerEl.setAttribute('aria-expanded', 'true');
+          item.targetEl.classList.remove('hidden');
+          item.active = true;
 
+          if (item.iconEl) {
+            item.iconEl.classList.add('rotate-180');
+          }
+        }
+
+        _deactivateItem(item) {
           item.triggerEl.classList.remove(
             ...this._options.activeClasses.split(' ')
           );
@@ -198,21 +240,19 @@ export default new (class App {
             ...this._options.inactiveClasses.split(' ')
           );
           item.targetEl.classList.add('hidden');
-          item.triggerEl.setAttribute('aria-expanded', false);
+          item.triggerEl.setAttribute('aria-expanded', 'false');
           item.active = false;
 
-          // rotate icon if set
           if (item.iconEl) {
             item.iconEl.classList.remove('rotate-180');
           }
-
-          // callback function
-          this._options.onClose(this, item);
         }
       }
 
+      // Make Accordion available globally for external usage
       window.Accordion = Accordion;
 
+      // Initialize all accordions on the page
       document.querySelectorAll('[data-accordion]').forEach(accordionEl => {
         const alwaysOpen = accordionEl.getAttribute('data-accordion');
         const activeClasses = accordionEl.getAttribute('data-active-classes');
@@ -222,26 +262,38 @@ export default new (class App {
 
         const items = [];
         accordionEl.querySelectorAll('[data-accordion-target]').forEach(el => {
+          const targetSelector = el.getAttribute('data-accordion-target');
           const item = {
-            id: el.getAttribute('data-accordion-target'),
+            id: targetSelector,
             triggerEl: el,
-            targetEl: document.querySelector(
-              el.getAttribute('data-accordion-target')
-            ),
+            targetEl: document.querySelector(targetSelector),
             iconEl: el.querySelector('[data-accordion-icon]'),
-            active: el.getAttribute('aria-expanded') === 'true' ? true : false,
+            active: el.getAttribute('aria-expanded') === 'true',
           };
           items.push(item);
         });
 
         new Accordion(items, {
-          alwaysOpen: alwaysOpen === 'open' ? true : false,
-          activeClasses: activeClasses ? activeClasses : Default.activeClasses,
-          inactiveClasses: inactiveClasses
-            ? inactiveClasses
-            : Default.inactiveClasses,
+          alwaysOpen: alwaysOpen === 'open',
+          activeClasses: activeClasses || Default.activeClasses,
+          inactiveClasses: inactiveClasses || Default.inactiveClasses,
         });
       });
-    } catch (error) {}
+    } catch (error) {
+      logger.error('Error initializing accordion:', error);
+    }
+  };
+
+  /**
+   * Initialize lazy loading for images
+   */
+  initLazyLoading = () => {
+    try {
+      // LazyLoader is already initialized as singleton
+      // Just log that it's active
+      logger.debug('Lazy loading initialized');
+    } catch (error) {
+      logger.error('Error initializing lazy loading:', error);
+    }
   };
 })();

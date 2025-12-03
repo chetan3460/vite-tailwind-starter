@@ -19,6 +19,9 @@
 @import './custom/plugins/_datepicker.css';
 @import '../../node_modules/swiper/swiper-bundle.min.css';
 
+/* // Utilities */
+@import './utilities/_accessibility.css';
+
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -250,11 +253,6 @@ body {
 
 .dark .dark\:border-dark-footer {
   border-color: var(--color-dark-footer);
-}
-
-/* Important Utility Classes */
-.important {
-  /* Add !important to all utilities when needed */
 }
 
 /* Custom Responsive Breakpoints */

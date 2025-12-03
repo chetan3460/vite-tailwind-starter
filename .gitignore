@@ -12,3 +12,25 @@ public/version.json
 # system files
 Thumbs.db
 .vercel
+
+# testing
+coverage/
+*.lcov
+
+# TypeScript
+*.tsbuildinfo
+.tsbuildinfo
+
+# environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
